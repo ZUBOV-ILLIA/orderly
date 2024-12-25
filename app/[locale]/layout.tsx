@@ -1,7 +1,7 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { redirect } from "next/navigation";
-import { Locale, routing } from "@/i18n/routing";
+import { Locale, routing, Link } from "@/i18n/routing";
 
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -30,7 +30,7 @@ export default async function LocaleLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
 
@@ -47,6 +47,23 @@ export default async function LocaleLayout({
         <AddBootstrap />
         <body className={`${geistSans.variable} ${geistMono.variable}`}>
           <LocaleSwitcher />
+
+          <Link href="/" className="nav-link ">
+            Home
+          </Link>
+          <Link href="/arrivals" className="nav-link ">
+            Arrivals
+          </Link>
+          <Link href="/products" className="nav-link ">
+            Products
+          </Link>
+
+          <div>ddd</div>
+          <div>ddd</div>
+          <div>ddd</div>
+          <div>ddd</div>
+
+          <button className="button active btn-primary">click</button>
 
           {children}
         </body>

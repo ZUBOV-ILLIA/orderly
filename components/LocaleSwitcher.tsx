@@ -2,18 +2,16 @@
 
 import { Locale, routing, usePathname, useRouter } from "@/i18n/routing";
 import { useLocale } from "next-intl";
-import { useParams } from "next/navigation";
 
 export default function LocaleSwitcher() {
   const pathname = usePathname();
   const router = useRouter();
-  const params = useParams();
   const locale = useLocale();
 
   function onSelect(nextLocale: string) {
     if (nextLocale === locale) return;
 
-    router.replace({ pathname, params }, { locale: nextLocale as Locale });
+    router.replace({ pathname }, { locale: nextLocale as Locale });
   }
 
   return (
