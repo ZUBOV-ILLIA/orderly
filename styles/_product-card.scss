@@ -1,0 +1,14 @@
+.prod-card {
+  height: 70px;
+  min-width: max-content;
+
+  &__status-dot {
+    height: 12px;
+    width: 12px;
+    flex-shrink: 0;
+  }
+
+  &__name {
+    text-decoration: underline #6c757d;
+  }
+}

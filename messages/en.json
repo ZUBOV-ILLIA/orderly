@@ -7,5 +7,7 @@
   "groups": "Groups",
   "products": "Products",
   "customers": "Customers",
-  "settings": "Settings"
+  "settings": "Settings",
+  "new": "New",
+  "used": "Used"
 }

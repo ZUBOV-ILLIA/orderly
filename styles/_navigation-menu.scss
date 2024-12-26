@@ -1,5 +1,11 @@
 .nav-menu {
   width: 200px;
+  flex-shrink: 0;
+  transition: .3s linear;
+
+  &--closed {
+    width: 0;
+  }
 
   &__img-wrap {
     height: 100px;

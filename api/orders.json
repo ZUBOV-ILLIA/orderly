@@ -1,49 +1,49 @@
 [
   {
     "id": 1,
-    "title": "Order 1",
+    "title": "Order Placed for a 27-inch Desktop Monitor",
     "date": "2017-06-29 10:15:21",
     "description": "27-inch monitor"
   },
   {
     "id": 2,
-    "title": "Order 2",
+    "title": "High-Performance Gaming Laptop with RGB Keyboard and Advanced Cooling System",
     "date": "2017-06-30 11:45:33",
     "description": "Gaming laptop with RGB keyboard and advanced cooling system for extended performance"
   },
   {
     "id": 3,
-    "title": "Order 3",
+    "title": "Wireless Keyboard and Mouse Combo for Home and Office Use",
     "date": "2017-07-01 14:23:10",
     "description": "Wireless keyboard and mouse combo, ergonomic design, ideal for home and office use"
   },
   {
     "id": 4,
-    "title": "Order 4",
+    "title": "Order for a 15-inch Portable Monitor",
     "date": "2017-07-02 09:55:42",
     "description": "15-inch portable monitor"
   },
   {
     "id": 5,
-    "title": "Order 5",
+    "title": "Mechanical Keyboard with Customizable Switches for Gaming Enthusiasts",
     "date": "2017-07-03 16:30:00",
     "description": "Mechanical keyboard, customizable switches, durable build, perfect for gaming enthusiasts"
   },
   {
     "id": 6,
-    "title": "Order 6",
+    "title": "Business Laptop with Extended Battery Life and High Security",
     "date": "2017-07-04 08:20:14",
     "description": "Business laptop with extended battery life, high security, and excellent performance for multitasking"
   },
   {
     "id": 7,
-    "title": "Order 7",
+    "title": "Ergonomic Keyboard for Office Use with Wrist Support and Quiet Keys",
     "date": "2017-07-05 13:05:18",
     "description": "Ergonomic keyboard for office use with wrist support and quiet keys"
   },
   {
     "id": 8,
-    "title": "Order 8",
+    "title": "Curved Ultra-Wide Monitor for Immersive Viewing Experience",
     "date": "2017-07-06 19:45:50",
     "description": "Curved ultra-wide monitor, 34-inch, immersive viewing experience for work and entertainment"
   }
