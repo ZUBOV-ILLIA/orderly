@@ -1,0 +1,21 @@
+.custom-select {
+  &__head {
+    &:after {
+      position: absolute;
+      top: 47%;
+      right: 16px;
+    }
+  }
+
+  &__menu {
+
+  }
+
+  &__item {
+    transition: background-color .3s;
+
+    &:hover {
+      background-color: #c8cccf;
+    }
+  }
+}

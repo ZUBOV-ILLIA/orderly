@@ -1,14 +1,28 @@
-"use client";
+// import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
+import CustomSelect from "@/components/CustomSelect";
 
-import { useTranslations } from "next-intl";
-// import { Link } from "@/i18n/routing";
+import products from "@/api/products.json";
 
-export default function ProductsPage() {
-  const t = useTranslations("NavMenu");
+export default async function ProductsPage() {
+  const t = await getTranslations();
+
+  const productTypes = [...new Set(products.map((product) => product.type))];
 
   return (
-    <div className="arrivals">
-      <h1 className="p-5 fw-bolder">{t("products")}</h1>
+    <div className="flex-grow-1">
+      <div className="my-5 mx-4 mx-md-5 d-md-flex align-items-center">
+        <h2 className="mb-3 me-4 mb-md-0 fw-bolder text-nowrap animate__animated animate__backInLeft animate__faster">
+          {t("products")} 10 / 25
+        </h2>
+
+        <div className="d-sm-flex align-items-center flex-grow-1 animate__animated animate__backInRight animate__faster">
+          <span className="me-2">{t("type")}:</span>
+          <div className="w-100">
+            <CustomSelect options={productTypes} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

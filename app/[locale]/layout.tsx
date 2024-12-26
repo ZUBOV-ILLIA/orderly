@@ -8,7 +8,7 @@ import type { Metadata } from "next";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@/styles/globals.scss";
 import AddBootstrap from "@/AddBootstrap";
-import Header from "@/components/Header/Header";
+import Header from "@/components/Header";
 import NavigationMenu from "@/components/NavigationMenu";
 
 export const metadata: Metadata = {
@@ -36,9 +36,9 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <NextIntlClientProvider messages={messages}>
         <AddBootstrap />
-        <body className="min-vh-100 d-flex flex-column">
+        <body className="min-vh-100 d-flex flex-column align-items-start">
           <Header />
-          <div className="d-flex flex-grow-1">
+          <div className="w-100 d-flex flex-grow-1">
             <NavigationMenu />
             {children}
           </div>

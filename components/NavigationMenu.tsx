@@ -8,7 +8,7 @@ import "@/styles/_navigation-menu.scss";
 
 export default function NavigationMenu() {
   const pathname = usePathname();
-  const t = useTranslations("NavMenu");
+  const t = useTranslations();
 
   const menuItems = [
     { label: t("orders"), href: "/orders" },
@@ -19,7 +19,10 @@ export default function NavigationMenu() {
   ];
 
   return (
-    <div className="collapse-horizontal show shadow-lg" id="sideNavBody">
+    <div
+      className="collapse-horizontal show bg-white shadow-lg z-1"
+      id="sideNavBody"
+    >
       <div className="nav-menu d-flex flex-column align-items-center flex-grow-1 h-100">
         <div className="nav-menu__img-wrap my-5 position-relative d-flex align-items-center justify-content-center rounded-circle animate__animated animate__zoomIn">
           <Image

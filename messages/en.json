@@ -1,11 +1,11 @@
 {
   "ru": "rus",
   "en": "eng",
-  "NavMenu": {
-    "orders": "Orders",
-    "groups": "Groups",
-    "products": "Products",
-    "customers": "Customers",
-    "settings": "Settings"
-  }
+  "all": "All",
+  "type": "Type",
+  "orders": "Orders",
+  "groups": "Groups",
+  "products": "Products",
+  "customers": "Customers",
+  "settings": "Settings"
 }
