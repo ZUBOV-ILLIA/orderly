@@ -1,24 +1,15 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { redirect } from "next/navigation";
-import { Locale, routing, Link } from "@/i18n/routing";
+import { Locale, routing } from "@/i18n/routing";
+import "animate.css";
 
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./globals.scss";
+import "@/styles/globals.scss";
 import AddBootstrap from "@/AddBootstrap";
-import LocaleSwitcher from "@/components/LocaleSwitcher";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import Header from "@/components/Header/Header";
+import NavigationMenu from "@/components/NavigationMenu";
 
 export const metadata: Metadata = {
   title: "Orderly",
@@ -45,27 +36,12 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <NextIntlClientProvider messages={messages}>
         <AddBootstrap />
-        <body className={`${geistSans.variable} ${geistMono.variable}`}>
-          <LocaleSwitcher />
-
-          <Link href="/" className="nav-link ">
-            Home
-          </Link>
-          <Link href="/arrivals" className="nav-link ">
-            Arrivals
-          </Link>
-          <Link href="/products" className="nav-link ">
-            Products
-          </Link>
-
-          <div>ddd</div>
-          <div>ddd</div>
-          <div>ddd</div>
-          <div>ddd</div>
-
-          <button className="button active btn-primary">click</button>
-
-          {children}
+        <body className="min-vh-100 d-flex flex-column">
+          <Header />
+          <div className="d-flex flex-grow-1">
+            <NavigationMenu />
+            {children}
+          </div>
         </body>
       </NextIntlClientProvider>
     </html>

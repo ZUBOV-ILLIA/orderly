@@ -1,0 +1,477 @@
+[
+  {
+    "id": 1,
+    "serialNumber": 5678,
+    "isNew": 1,
+    "photo": "pathToFile1.jpg",
+    "title": "27-inch Gaming Monitor",
+    "type": "Monitors",
+    "specification": "144Hz refresh rate, 1ms response time, HDR support",
+    "guarantee": {
+      "start": "2017-06-01 10:15:21",
+      "end": "2019-06-01 10:15:21"
+    },
+    "price": [
+      { "value": 300, "symbol": "USD", "isDefault": 0 },
+      { "value": 12690, "symbol": "UAH", "isDefault": 1 }
+    ],
+    "order": 1,
+    "date": "2017-06-01 10:15:21"
+  },
+  {
+    "id": 2,
+    "serialNumber": 7890,
+    "isNew": 0,
+    "photo": "pathToFile2.jpg",
+    "title": "Business Laptop",
+    "type": "Laptops",
+    "specification": "Intel Core i7, 16GB RAM, 512GB SSD, Windows 10 Pro",
+    "guarantee": {
+      "start": "2018-01-15 11:30:45",
+      "end": "2020-01-15 11:30:45"
+    },
+    "price": [
+      { "value": 1200, "symbol": "USD", "isDefault": 0 },
+      { "value": 50760, "symbol": "UAH", "isDefault": 1 }
+    ],
+    "order": 2,
+    "date": "2018-01-15 11:30:45"
+  },
+  {
+    "id": 3,
+    "serialNumber": 3456,
+    "isNew": 1,
+    "photo": "pathToFile3.jpg",
+    "title": "Ergonomic Mechanical Keyboard",
+    "type": "Keyboards",
+    "specification": "RGB backlighting, tactile switches, wrist rest included",
+    "guarantee": {
+      "start": "2019-05-20 09:45:30",
+      "end": "2021-05-20 09:45:30"
+    },
+    "price": [
+      { "value": 150, "symbol": "USD", "isDefault": 0 },
+      { "value": 6345, "symbol": "UAH", "isDefault": 1 }
+    ],
+    "order": 3,
+    "date": "2019-05-20 09:45:30"
+  },
+  {
+    "id": 4,
+    "serialNumber": 9012,
+    "isNew": 1,
+    "photo": "pathToFile4.jpg",
+    "title": "Curved Ultra-wide Monitor",
+    "type": "Monitors",
+    "specification": "34-inch screen, 3440x1440 resolution, 100Hz refresh rate",
+    "guarantee": {
+      "start": "2020-03-10 15:30:00",
+      "end": "2022-03-10 15:30:00"
+    },
+    "price": [
+      { "value": 800, "symbol": "USD", "isDefault": 0 },
+      { "value": 33840, "symbol": "UAH", "isDefault": 1 }
+    ],
+    "order": 4,
+    "date": "2020-03-10 15:30:00"
+  },
+  {
+    "id": 5,
+    "serialNumber": 1234,
+    "isNew": 0,
+    "photo": "pathToFile5.jpg",
+    "title": "Wireless Mouse",
+    "type": "Accessories",
+    "specification": "High precision, rechargeable battery, ergonomic design",
+    "guarantee": {
+      "start": "2021-07-01 14:20:00",
+      "end": "2023-07-01 14:20:00"
+    },
+    "price": [
+      { "value": 50, "symbol": "USD", "isDefault": 0 },
+      { "value": 2115, "symbol": "UAH", "isDefault": 1 }
+    ],
+    "order": 5,
+    "date": "2021-07-01 14:20:00"
+  },
+  {
+    "id": 6,
+    "serialNumber": 5679,
+    "isNew": 1,
+    "photo": "pathToFile6.jpg",
+    "title": "Portable Bluetooth Speaker",
+    "type": "Accessories",
+    "specification": "Water-resistant, 12-hour battery life, clear sound quality",
+    "guarantee": {
+      "start": "2022-02-15 10:00:00",
+      "end": "2024-02-15 10:00:00"
+    },
+    "price": [
+      { "value": 60, "symbol": "USD", "isDefault": 0 },
+      { "value": 2538, "symbol": "UAH", "isDefault": 1 }
+    ],
+    "order": 6,
+    "date": "2022-02-15 10:00:00"
+  },
+  {
+    "id": 7,
+    "serialNumber": 8901,
+    "isNew": 0,
+    "photo": "pathToFile7.jpg",
+    "title": "4K Ultra HD Smart TV",
+    "type": "Electronics",
+    "specification": "55-inch screen, Dolby Vision, built-in apps and streaming services",
+    "guarantee": {
+      "start": "2021-11-10 11:10:30",
+      "end": "2023-11-10 11:10:30"
+    },
+    "price": [
+      { "value": 1000, "symbol": "USD", "isDefault": 0 },
+      { "value": 42300, "symbol": "UAH", "isDefault": 1 }
+    ],
+    "order": 7,
+    "date": "2021-11-10 11:10:30"
+  },
+  {
+    "id": 8,
+    "serialNumber": 2345,
+    "isNew": 1,
+    "photo": "pathToFile8.jpg",
+    "title": "Gaming Headset with Microphone",
+    "type": "Accessories",
+    "specification": "Noise-cancelling, surround sound, adjustable microphone",
+    "guarantee": {
+      "start": "2020-12-10 17:25:45",
+      "end": "2022-12-10 17:25:45"
+    },
+    "price": [
+      { "value": 120, "symbol": "USD", "isDefault": 0 },
+      { "value": 5076, "symbol": "UAH", "isDefault": 1 }
+    ],
+    "order": 8,
+    "date": "2020-12-10 17:25:45"
+  },
+  {
+    "id": 9,
+    "serialNumber": 3457,
+    "isNew": 1,
+    "photo": "pathToFile9.jpg",
+    "title": "15.6-inch Laptop with i5 Processor",
+    "type": "Laptops",
+    "specification": "Intel Core i5, 8GB RAM, 256GB SSD, 1080p display",
+    "guarantee": {
+      "start": "2023-06-25 09:00:00",
+      "end": "2025-06-25 09:00:00"
+    },
+    "price": [
+      { "value": 650, "symbol": "USD", "isDefault": 0 },
+      { "value": 27495, "symbol": "UAH", "isDefault": 1 }
+    ],
+    "order": 9,
+    "date": "2023-06-25 09:00:00"
+  },
+  {
+    "id": 10,
+    "serialNumber": 6789,
+    "isNew": 1,
+    "photo": "pathToFile10.jpg",
+    "title": "External Hard Drive 1TB",
+    "type": "Storage",
+    "specification": "USB 3.0, shockproof, fast data transfer speed",
+    "guarantee": {
+      "start": "2022-08-18 13:40:00",
+      "end": "2024-08-18 13:40:00"
+    },
+    "price": [
+      { "value": 50, "symbol": "USD", "isDefault": 0 },
+      { "value": 2115, "symbol": "UAH", "isDefault": 1 }
+    ],
+    "order": 10,
+    "date": "2022-08-18 13:40:00"
+  },
+  {
+    "id": 11,
+    "serialNumber": 1357,
+    "isNew": 1,
+    "photo": "pathToFile11.jpg",
+    "title": "27-inch 4K Monitor",
+    "type": "Monitors",
+    "specification": "3840x2160 resolution, 60Hz refresh rate, IPS panel for vivid colors",
+    "guarantee": {
+      "start": "2022-05-05 10:00:00",
+      "end": "2024-05-05 10:00:00"
+    },
+    "price": [
+      { "value": 400, "symbol": "USD", "isDefault": 0 },
+      { "value": 16920, "symbol": "UAH", "isDefault": 1 }
+    ],
+    "order": 11,
+    "date": "2022-05-05 10:00:00"
+  },
+  {
+    "id": 12,
+    "serialNumber": 2468,
+    "isNew": 1,
+    "photo": "pathToFile12.jpg",
+    "title": "Ultra-light Laptop",
+    "type": "Laptops",
+    "specification": "Intel Core i3, 8GB RAM, 128GB SSD, 13-inch display",
+    "guarantee": {
+      "start": "2023-03-01 14:30:00",
+      "end": "2025-03-01 14:30:00"
+    },
+    "price": [
+      { "value": 500, "symbol": "USD", "isDefault": 0 },
+      { "value": 21150, "symbol": "UAH", "isDefault": 1 }
+    ],
+    "order": 12,
+    "date": "2023-03-01 14:30:00"
+  },
+  {
+    "id": 13,
+    "serialNumber": 9876,
+    "isNew": 1,
+    "photo": "pathToFile13.jpg",
+    "title": "Bluetooth Wireless Keyboard",
+    "type": "Keyboards",
+    "specification": "Compact design, multi-device support, long battery life",
+    "guarantee": {
+      "start": "2021-07-15 10:00:00",
+      "end": "2023-07-15 10:00:00"
+    },
+    "price": [
+      { "value": 70, "symbol": "USD", "isDefault": 0 },
+      { "value": 2961, "symbol": "UAH", "isDefault": 1 }
+    ],
+    "order": 13,
+    "date": "2021-07-15 10:00:00"
+  },
+  {
+    "id": 14,
+    "serialNumber": 8642,
+    "isNew": 1,
+    "photo": "pathToFile14.jpg",
+    "title": "External SSD 512GB",
+    "type": "Storage",
+    "specification": "USB 3.1, ultra-fast read/write speeds, portable design",
+    "guarantee": {
+      "start": "2023-04-10 13:00:00",
+      "end": "2025-04-10 13:00:00"
+    },
+    "price": [
+      { "value": 120, "symbol": "USD", "isDefault": 0 },
+      { "value": 5076, "symbol": "UAH", "isDefault": 1 }
+    ],
+    "order": 14,
+    "date": "2023-04-10 13:00:00"
+  },
+  {
+    "id": 15,
+    "serialNumber": 7531,
+    "isNew": 1,
+    "photo": "pathToFile15.jpg",
+    "title": "Smart Home Security Camera",
+    "type": "Electronics",
+    "specification": "1080p resolution, motion detection, night vision, cloud storage",
+    "guarantee": {
+      "start": "2022-09-20 18:00:00",
+      "end": "2024-09-20 18:00:00"
+    },
+    "price": [
+      { "value": 150, "symbol": "USD", "isDefault": 0 },
+      { "value": 6345, "symbol": "UAH", "isDefault": 1 }
+    ],
+    "order": 15,
+    "date": "2022-09-20 18:00:00"
+  },
+  {
+    "id": 16,
+    "serialNumber": 1122,
+    "isNew": 1,
+    "photo": "pathToFile16.jpg",
+    "title": "Wireless Charging Pad",
+    "type": "Accessories",
+    "specification": "Fast charging, compatible with Qi-enabled devices, sleek design",
+    "guarantee": {
+      "start": "2023-07-01 11:00:00",
+      "end": "2025-07-01 11:00:00"
+    },
+    "price": [
+      { "value": 30, "symbol": "USD", "isDefault": 0 },
+      { "value": 1269, "symbol": "UAH", "isDefault": 1 }
+    ],
+    "order": 16,
+    "date": "2023-07-01 11:00:00"
+  },
+  {
+    "id": 17,
+    "serialNumber": 2233,
+    "isNew": 1,
+    "photo": "pathToFile17.jpg",
+    "title": "Smart Fitness Watch",
+    "type": "Wearables",
+    "specification": "Heart rate monitor, GPS tracking, waterproof, activity and sleep tracking",
+    "guarantee": {
+      "start": "2023-05-25 09:00:00",
+      "end": "2025-05-25 09:00:00"
+    },
+    "price": [
+      { "value": 120, "symbol": "USD", "isDefault": 0 },
+      { "value": 5076, "symbol": "UAH", "isDefault": 1 }
+    ],
+    "order": 17,
+    "date": "2023-05-25 09:00:00"
+  },
+  {
+    "id": 18,
+    "serialNumber": 3344,
+    "isNew": 1,
+    "photo": "pathToFile18.jpg",
+    "title": "Gaming Chair with Lumbar Support",
+    "type": "Furniture",
+    "specification": "Ergonomic design, adjustable armrests, durable leather, 360-degree swivel",
+    "guarantee": {
+      "start": "2022-10-10 12:30:00",
+      "end": "2024-10-10 12:30:00"
+    },
+    "price": [
+      { "value": 250, "symbol": "USD", "isDefault": 0 },
+      { "value": 10575, "symbol": "UAH", "isDefault": 1 }
+    ],
+    "order": 18,
+    "date": "2022-10-10 12:30:00"
+  },
+  {
+    "id": 19,
+    "serialNumber": 4455,
+    "isNew": 1,
+    "photo": "pathToFile19.jpg",
+    "title": "Digital SLR Camera",
+    "type": "Electronics",
+    "specification": "24.2 MP, Full HD video recording, Wi-Fi enabled",
+    "guarantee": {
+      "start": "2021-12-01 13:20:00",
+      "end": "2023-12-01 13:20:00"
+    },
+    "price": [
+      { "value": 800, "symbol": "USD", "isDefault": 0 },
+      { "value": 33840, "symbol": "UAH", "isDefault": 1 }
+    ],
+    "order": 19,
+    "date": "2021-12-01 13:20:00"
+  },
+  {
+    "id": 20,
+    "serialNumber": 5566,
+    "isNew": 1,
+    "photo": "pathToFile20.jpg",
+    "title": "Portable Projector",
+    "type": "Electronics",
+    "specification": "Mini design, HD resolution, wireless connectivity",
+    "guarantee": {
+      "start": "2023-09-15 16:00:00",
+      "end": "2025-09-15 16:00:00"
+    },
+    "price": [
+      { "value": 180, "symbol": "USD", "isDefault": 0 },
+      { "value": 7614, "symbol": "UAH", "isDefault": 1 }
+    ],
+    "order": 20,
+    "date": "2023-09-15 16:00:00"
+  },
+  {
+    "id": 21,
+    "serialNumber": 6677,
+    "isNew": 1,
+    "photo": "pathToFile21.jpg",
+    "title": "Wireless Earbuds",
+    "type": "Accessories",
+    "specification": "Noise-cancelling, 20-hour battery life, touch controls",
+    "guarantee": {
+      "start": "2023-08-10 12:00:00",
+      "end": "2025-08-10 12:00:00"
+    },
+    "price": [
+      { "value": 80, "symbol": "USD", "isDefault": 0 },
+      { "value": 3384, "symbol": "UAH", "isDefault": 1 }
+    ],
+    "order": 21,
+    "date": "2023-08-10 12:00:00"
+  },
+  {
+    "id": 22,
+    "serialNumber": 7788,
+    "isNew": 0,
+    "photo": "pathToFile22.jpg",
+    "title": "Bluetooth Wireless Speaker",
+    "type": "Accessories",
+    "specification": "Portable design, 30-hour battery life, high-quality sound",
+    "guarantee": {
+      "start": "2022-12-01 14:15:00",
+      "end": "2024-12-01 14:15:00"
+    },
+    "price": [
+      { "value": 90, "symbol": "USD", "isDefault": 0 },
+      { "value": 3807, "symbol": "UAH", "isDefault": 1 }
+    ],
+    "order": 22,
+    "date": "2022-12-01 14:15:00"
+  },
+  {
+    "id": 23,
+    "serialNumber": 8899,
+    "isNew": 1,
+    "photo": "pathToFile23.jpg",
+    "title": "Portable Power Bank 10000mAh",
+    "type": "Accessories",
+    "specification": "Quick charge, dual USB ports, compact and portable",
+    "guarantee": {
+      "start": "2023-04-05 15:00:00",
+      "end": "2025-04-05 15:00:00"
+    },
+    "price": [
+      { "value": 30, "symbol": "USD", "isDefault": 0 },
+      { "value": 1269, "symbol": "UAH", "isDefault": 1 }
+    ],
+    "order": 23,
+    "date": "2023-04-05 15:00:00"
+  },
+  {
+    "id": 24,
+    "serialNumber": 9900,
+    "isNew": 1,
+    "photo": "pathToFile24.jpg",
+    "title": "Smart Thermostat",
+    "type": "Electronics",
+    "specification": "Wi-Fi enabled, energy saving, easy to control via app",
+    "guarantee": {
+      "start": "2023-06-18 17:20:00",
+      "end": "2025-06-18 17:20:00"
+    },
+    "price": [
+      { "value": 150, "symbol": "USD", "isDefault": 0 },
+      { "value": 6345, "symbol": "UAH", "isDefault": 1 }
+    ],
+    "order": 24,
+    "date": "2023-06-18 17:20:00"
+  },
+  {
+    "id": 25,
+    "serialNumber": 1123,
+    "isNew": 1,
+    "photo": "pathToFile25.jpg",
+    "title": "Adjustable Standing Desk",
+    "type": "Furniture",
+    "specification": "Height adjustable, ergonomic design, sturdy frame",
+    "guarantee": {
+      "start": "2023-07-25 10:30:00",
+      "end": "2025-07-25 10:30:00"
+    },
+    "price": [
+      { "value": 350, "symbol": "USD", "isDefault": 0 },
+      { "value": 14805, "symbol": "UAH", "isDefault": 1 }
+    ],
+    "order": 25,
+    "date": "2023-07-25 10:30:00"
+  }
+]

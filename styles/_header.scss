@@ -1,0 +1,13 @@
+.header {
+  height: 44px;
+
+  &__burger-btn {
+    border: 1px solid transparent;
+    transition: border-color .3s;
+
+    &:hover {
+      border-color: black;
+
+    }
+  }
+}

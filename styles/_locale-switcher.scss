@@ -1,0 +1,18 @@
+.locale-switcher {
+  .dropdown-toggle {
+    border: 1px solid transparent;
+    transition: border-color .3s;
+
+    &:hover {
+      border-color: black;
+    }
+
+    &:after {
+      content: none;
+    }
+  }
+
+  .dropdown-menu {
+    min-width: max-content;
+  }
+}

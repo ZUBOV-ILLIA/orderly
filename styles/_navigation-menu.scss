@@ -1,0 +1,53 @@
+.nav-menu {
+  width: 200px;
+
+  &__img-wrap {
+    height: 100px;
+    width: 100px;
+  }
+
+  &__setting-btn {
+    height: 42px;
+    width: 42px;
+
+    & svg {
+      transition: .3s transform;
+    }
+
+    &:hover svg {
+      transform: rotate(180deg) scale(1.8);
+    }
+  }
+
+  &__link {
+    position: relative;
+    color: black;
+
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      right: 50%;
+      height: 2px;
+      background-color: green;
+      transition: left .3s, right .3s ;
+    }
+
+    &:hover {
+      &:after {
+        left: 0;
+        right: 0;
+      }
+    }
+
+    &--active {
+      font-weight: bolder;
+
+      &:after {
+        left: 0;
+        right: 0;
+      }
+    }
+  }
+}

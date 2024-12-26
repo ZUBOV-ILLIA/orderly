@@ -1,6 +1,11 @@
 {
-  "HomePage": {
-    "title": "Hello world!",
-    "about": "Go to the about page"
+  "ru": "rus",
+  "en": "eng",
+  "NavMenu": {
+    "orders": "Orders",
+    "groups": "Groups",
+    "products": "Products",
+    "customers": "Customers",
+    "settings": "Settings"
   }
 }
