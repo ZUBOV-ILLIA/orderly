@@ -1,10 +1,34 @@
 .nav-menu {
-  width: 200px;
-  flex-shrink: 0;
-  transition: .3s linear;
+  &__burger-btn {
+    left: -15px;
+    transition: left .3s;
 
-  &--closed {
-    width: 0;
+    &:hover {
+      left: 0;
+    }
+
+    &:active {
+      left: -15px;
+    }
+  }
+
+  &__burger-icon {
+    transition: transform .3s;
+
+    &--open {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__wrap {
+    width: 200px;
+    flex-shrink: 0;
+    overflow: hidden;
+    transition: .3s linear;
+
+    &--closed {
+      width: 0;
+    }
   }
 
   &__img-wrap {

@@ -3,12 +3,15 @@
 import Image from "next/image";
 import { Link, usePathname } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
-import { GearFill } from "react-bootstrap-icons";
+import { ArrowRightCircleFill, GearFill } from "react-bootstrap-icons";
 import "@/styles/_navigation-menu.scss";
+import { useState } from "react";
 
 export default function NavigationMenu() {
   const pathname = usePathname();
   const t = useTranslations();
+
+  const [isOpen, setIsOpen] = useState(true);
 
   const menuItems = [
     { label: t("orders"), href: "/orders" },
@@ -19,11 +22,20 @@ export default function NavigationMenu() {
   ];
 
   return (
-    <div
-      className="collapse-horizontal show bg-white shadow-lg z-1"
-      id="sideNavBody"
-    >
-      <div className="nav-menu d-flex flex-column align-items-center flex-grow-1 h-100">
+    <div className="nav-menu flex-grow-1">
+      <div
+        className="nav-menu__burger-btn mt-1 py-3 ps-4 pe-3 position-fixed top-0 rounded-end-5 border border-black bg-white shadow-lg z-2 animate__animated animate__backInLeft"
+        role="button"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <ArrowRightCircleFill
+          size={24}
+          className={`nav-menu__burger-icon  ${isOpen ? "nav-menu__burger-icon--open" : ""}  text-success `}
+        />
+      </div>
+      <div
+        className={`nav-menu__wrap ${isOpen ? "" : "nav-menu__wrap--closed"} h-100 d-flex flex-column align-items-center bg-white shadow-lg z-1`}
+      >
         <div className="nav-menu__img-wrap my-5 position-relative d-flex align-items-center justify-content-center rounded-circle animate__animated animate__zoomIn">
           <Image
             src="/images/avatar.jpg"
