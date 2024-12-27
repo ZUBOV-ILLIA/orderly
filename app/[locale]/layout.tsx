@@ -10,6 +10,7 @@ import "@/styles/globals.scss";
 import AddBootstrap from "@/AddBootstrap";
 import Header from "@/components/Header";
 import NavigationMenu from "@/components/NavigationMenu";
+import { ToastContainer } from "react-toastify";
 
 export const metadata: Metadata = {
   title: "Orderly",
@@ -42,6 +43,7 @@ export default async function LocaleLayout({
             <NavigationMenu />
             {children}
           </div>
+          <ToastContainer />
         </body>
       </NextIntlClientProvider>
     </html>

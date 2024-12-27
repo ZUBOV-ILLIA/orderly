@@ -10,5 +10,47 @@
 
   &__name {
     text-decoration: underline #6c757d;
+    max-width: 430px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
   }
+
+  &__price {
+    & :first-child {
+      font-size: .7rem;
+      color: #6c757d;
+    }
+    & :last-child {
+      line-height: 1;
+    }
+  }
+
+  &__group {
+    max-width: 400px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  &__manager {
+    text-decoration: underline #6c757d;
+  }
+
+  &__date-short {
+    font-size: .7rem;
+    color: #6c757d;
+  }
+
+  &__delete {
+    &:hover {
+      border-color: black;
+    }
+  }
+}
+
+.custom-modal .prod-card {
+  min-width: auto;
 }

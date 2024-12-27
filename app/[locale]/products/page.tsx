@@ -26,7 +26,7 @@ export default async function ProductsPage() {
         </div>
       </div>
 
-      <div className="products__list d-flex flex-column gap-3 overflow-scroll">
+      <div className="products__list d-flex flex-column gap-3">
         {products.slice(0, 1).map((product) => (
           <ProductCard key={product.id} p={product} />
         ))}

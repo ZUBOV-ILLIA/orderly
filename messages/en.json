@@ -9,5 +9,9 @@
   "customers": "Customers",
   "settings": "Settings",
   "new": "New",
-  "used": "Used"
+  "used": "Used",
+  "sureToDeleteProduct": "Are you sure you want to delete this product ?",
+  "sureToDeleteOrder": "Are you sure you want to delete this order ?",
+  "cancel": "Cancel",
+  "delete": "Delete"
 }
