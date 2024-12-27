@@ -1,5 +1,4 @@
 import TopMenu from "@/components/TopMenu";
-import { List } from "react-bootstrap-icons";
 import "@/styles/_header.scss";
 
 export default function Header() {
