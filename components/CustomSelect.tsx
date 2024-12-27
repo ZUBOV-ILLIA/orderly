@@ -20,7 +20,7 @@ export default function CustomSelect({ options }: { options: string[] }) {
         {selectedValue}
       </div>
 
-      <ul className="custom-select__menu dropdown-menu w-100">
+      <ul className="custom-select__menu dropdown-menu w-100 bg-white">
         <li
           className={`custom-select__item mb-2 ps-2 py-1 ${selectedValue === t("all") ? "bg-secondary text-white" : ""}`}
           onClick={() => setSelectedValue(t("all"))}

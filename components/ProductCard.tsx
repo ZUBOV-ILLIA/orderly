@@ -56,17 +56,19 @@ export default function ProductCard({ p }: { p: Product }) {
 
       {/* name and serial number */}
       <div className="me-4 d-flex flex-column justify-content-center">
-        <CustomPopover content={p.title} maxLength={80}>
+        <CustomPopover content={p.title} maxLength={75}>
           <p className="prod-card__name">{p.title}</p>
         </CustomPopover>
         <p className="text-secondary">{p.serialNumber}</p>
       </div>
 
       {/* status */}
-      <span className="me-4 px-2 text-success">Свободен</span>
+      <span className="prod-card__status me-4 px-2 text-success text-center">
+        Свободен
+      </span>
 
       {/* guarantee */}
-      <div className="me-4 pe-2 d-flex flex-column justify-content-center">
+      <div className="prod-card__guarantee me-4 pe-2 d-flex flex-column justify-content-center">
         <p className="d-flex justify-content-between gap-2">
           <span className="text-secondary">c</span>{" "}
           <span>{formatDate(p.guarantee.start)}</span>
@@ -78,7 +80,9 @@ export default function ProductCard({ p }: { p: Product }) {
       </div>
 
       {/* is new or used */}
-      <span className="me-5">{t(p.isNew ? "new" : "used")}</span>
+      <span className="prod-card__condition me-4 text-center">
+        {t(p.isNew ? "new" : "used")}
+      </span>
 
       {/* price */}
       <div className="prod-card__price pb-2 me-4 d-flex flex-column justify-content-center">
@@ -91,7 +95,7 @@ export default function ProductCard({ p }: { p: Product }) {
 
       {/* group */}
       <CustomPopover
-        content={`${p.title}${p.title}`} // imitation of huge group name
+        content={p.title} // imitation of huge group name
         maxLength={150} // if length will bigger, popover will run
       >
         <p className="prod-card__group me-4">
@@ -117,7 +121,7 @@ export default function ProductCard({ p }: { p: Product }) {
       </CustomPopover>
 
       {/* date */}
-      <div className="prod-card__date me-4 d-flex flex-column justify-content-center">
+      <div className="prod-card__date me-3 d-flex flex-column justify-content-center">
         <span className="prod-card__date-short align-self-center">
           {formatDate(p.date).slice(0, 7)}
         </span>

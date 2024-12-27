@@ -10,14 +10,28 @@
 
   &__name {
     text-decoration: underline #6c757d;
-    max-width: 430px;
+    width: 430px;
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
   }
 
+  &__status {
+    width: 100px;
+  }
+
+  &__guarantee {
+    width: 135px;
+  }
+
+  &__condition {
+    width: 55px;
+  }
+
   &__price {
+    width: 130px;
+
     & :first-child {
       font-size: .7rem;
       color: #6c757d;
@@ -28,7 +42,7 @@
   }
 
   &__group {
-    max-width: 400px;
+    width: 400px;
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -36,7 +50,12 @@
   }
 
   &__manager {
+    width: 250px;
     text-decoration: underline #6c757d;
+  }
+
+  &__date {
+    width: 130px;
   }
 
   &__date-short {

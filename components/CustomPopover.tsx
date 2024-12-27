@@ -39,22 +39,24 @@ export default function CustomPopover({
 
   return (
     <div
-      className={`position-relative ${className}`}
+      className={className}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={onClick}
     >
+      <div className="position-relative">
+        {isVisible && content.length > maxLength && (
+          <div
+            className="p-2 position-absolute bottom-100 z-3 bg-white border rounded-2 shadow animate__animated animate__fadeIn animate__faster"
+            style={{
+              maxWidth,
+            }}
+          >
+            {content}
+          </div>
+        )}
+      </div>
       {children}
-      {isVisible && content.length > maxLength && (
-        <div
-          className="p-2 position-absolute bottom-100 z-3 bg-white border rounded-2 shadow animate__animated animate__fadeIn animate__faster"
-          style={{
-            maxWidth,
-          }}
-        >
-          {content}
-        </div>
-      )}
     </div>
   );
 }
