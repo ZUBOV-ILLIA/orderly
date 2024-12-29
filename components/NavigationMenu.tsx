@@ -22,7 +22,7 @@ export default function NavigationMenu() {
   ];
 
   return (
-    <div className="nav-menu flex-grow-1">
+    <div className="nav-menu">
       <div
         className="nav-menu__burger-btn mt-1 py-3 ps-4 pe-3 position-fixed top-0 rounded-end-5 border border-black bg-white shadow-lg z-2 animate__animated animate__backInLeft"
         role="button"

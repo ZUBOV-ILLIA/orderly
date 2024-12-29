@@ -6,5 +6,5 @@ export function formatDate(input: string, locale: string = ""): string {
     ? new Date(input).toLocaleString(locale, { month: "short" })
     : month;
 
-  return `${day} / ${resultMonth} / ${year}`;
+  return `${day} / ${resultMonth.slice(0, 3)} / ${year}`;
 }

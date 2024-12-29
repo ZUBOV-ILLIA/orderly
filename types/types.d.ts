@@ -22,3 +22,11 @@ interface Product {
   order: number;
   date: string;
 }
+
+interface Order {
+  id: number;
+  title: string;
+  date: string;
+  description: string;
+  price: Price[];
+}

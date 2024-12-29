@@ -24,7 +24,7 @@
     width: 200px;
     flex-shrink: 0;
     overflow: hidden;
-    transition: .3s linear;
+    transition: width .3s;
 
     &--closed {
       width: 0;

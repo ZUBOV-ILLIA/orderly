@@ -12,7 +12,7 @@ export default function CustomSelect({ options }: { options: string[] }) {
   return (
     <div className="custom-select dropdown flex-grow-1 position-relative">
       <div
-        className="custom-select__head py-1 px-3 flex-grow-1 border rounded-2 dropdown-toggle"
+        className="custom-select__head py-1 px-3 flex-grow-1 border bg-white rounded-2 dropdown-toggle"
         role="button"
         data-bs-toggle="dropdown"
         aria-expanded="false"

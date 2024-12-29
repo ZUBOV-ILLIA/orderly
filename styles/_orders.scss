@@ -1,0 +1,43 @@
+.orders {
+  background-color: #F0F3F5;
+
+  &__add-order-btn {
+    height: 30px;
+    width: 30px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: -4px;
+      bottom: -4px;
+      left: -4px;
+      right: -4px;
+      background-color: #74A14B;
+      border-radius: 100%;
+      z-index: -1;
+    }
+  }
+
+  &__list {
+    padding-top: 70px;
+  }
+
+  &__prod-side {
+
+  }
+
+  &__add-product-btn {
+    height: 20px;
+    width: 20px;
+  }
+
+  &__prod-list {
+    max-width: 100%;
+  }
+
+  .prod-card {
+    &:hover {
+      border-bottom: 1px solid #dee2e6;
+    }
+  }
+}

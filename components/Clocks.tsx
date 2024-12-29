@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { useLocale } from "next-intl";
 import { Clock } from "react-bootstrap-icons";
-import CurrentlyOnline from "@/components/CurrentlyOnline";
 
 export default function Clocks() {
   const locale = useLocale();
@@ -58,7 +57,6 @@ export default function Clocks() {
     <div className="clocks">
       <div className="d-flex align-items-center justify-content-between text-capitalize">
         {formatDate(currentDate, "dayName", "long")}
-        <CurrentlyOnline />
       </div>
       <div className="d-flex align-items-center gap-1">
         <span>{formatDate(currentDate, "dayNumber")}</span>

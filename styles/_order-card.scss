@@ -1,0 +1,81 @@
+.order-card {
+  height: 70px;
+  min-width: 100%;
+  max-width: 100%;
+
+  &--is-open {
+    .order-card__name, .order-card__price, .order-card__delete {
+      padding: 0;
+      margin: 0;
+      max-width: 0;
+      min-width: 0;
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  &:hover {
+    box-shadow: 0 1rem 3rem #0000002d;
+  }
+
+  &__name {
+    min-width: 150px;
+    max-width: 650px;
+    display: -webkit-box;
+    text-decoration: underline #6c757d;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    transition: margin, padding, max-width .3s;
+  }
+
+  &__menu-btn {
+    height: 40px;
+    min-width: 40px;
+    transition: border-color .3s;
+
+    &:hover {
+      border-color: black !important;
+    }
+  }
+
+  &__price {
+    min-width: 150px;
+    max-width: 150px;
+    overflow: hidden;
+    transition: margin, padding, max-width .3s;
+
+    & :first-child {
+      font-size: .7rem;
+      color: #6c757d;
+    }
+    & :last-child {
+      line-height: 1;
+    }
+  }
+
+  &__date {
+    min-width: 150px;
+    max-width: 150px;
+  }
+
+  &__date-short {
+    font-size: .7rem;
+    color: #6c757d;
+  }
+
+  &__delete {
+    min-width: 50px;
+    max-width: 50px;
+    overflow: hidden;
+    transition: margin, padding, max-width .3s;
+
+    &:hover {
+      border-color: black;
+    }
+  }
+}
+
+.custom-modal .order-card {
+  min-width: auto;
+}

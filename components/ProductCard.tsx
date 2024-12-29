@@ -11,7 +11,13 @@ import CustomModal from "@/components/CustomModal";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-export default function ProductCard({ p }: { p: Product }) {
+export default function ProductCard({
+  p,
+  orderList,
+}: {
+  p: Product;
+  orderList?: boolean;
+}) {
   const t = useTranslations();
   const locale = useLocale();
 
@@ -44,7 +50,9 @@ export default function ProductCard({ p }: { p: Product }) {
   }
 
   return (
-    <div className="prod-card px-4 d-flex align-items-center bg-white border rounded-2">
+    <div
+      className={`prod-card px-4 d-flex align-items-center justify-content-between bg-white border${orderList ? "-top" : "rounded-2"}`}
+    >
       <span className="prod-card__status-dot ms-2 me-3 position-relative bg-success rounded-circle"></span>
       <Image
         src={p.photo}
@@ -68,65 +76,68 @@ export default function ProductCard({ p }: { p: Product }) {
       </span>
 
       {/* guarantee */}
-      <div className="prod-card__guarantee me-4 pe-2 d-flex flex-column justify-content-center">
-        <p className="d-flex justify-content-between gap-2">
-          <span className="text-secondary">c</span>{" "}
-          <span>{formatDate(p.guarantee.start)}</span>
-        </p>
-        <p className="d-flex justify-content-between gap-2">
-          <span className="text-secondary">по</span>{" "}
-          <span>{formatDate(p.guarantee.end)}</span>
-        </p>
-      </div>
-
-      {/* is new or used */}
-      <span className="prod-card__condition me-4 text-center">
-        {t(p.isNew ? "new" : "used")}
-      </span>
-
-      {/* price */}
-      <div className="prod-card__price pb-2 me-4 d-flex flex-column justify-content-center">
-        {p.price.map((el, i) => (
-          <span key={`${p.id}-${el.symbol}`}>
-            {el.value} {i == 0 ? "$" : el.symbol}
+      {!orderList && (
+        <>
+          <div className="prod-card__guarantee me-4 pe-2 d-flex flex-column justify-content-center">
+            <p className="d-flex justify-content-between gap-2">
+              <span className="text-secondary">c</span>{" "}
+              <span>{formatDate(p.guarantee.start)}</span>
+            </p>
+            <p className="d-flex justify-content-between gap-2">
+              <span className="text-secondary">по</span>{" "}
+              <span>{formatDate(p.guarantee.end)}</span>
+            </p>
+          </div>
+          {/* is new or used */}
+          <span className="prod-card__condition me-4 text-center">
+            {t(p.isNew ? "new" : "used")}
           </span>
-        ))}
-      </div>
 
-      {/* group */}
-      <CustomPopover
-        content={p.title} // imitation of huge group name
-        maxLength={150} // if length will bigger, popover will run
-      >
-        <p className="prod-card__group me-4">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur
-          harum iure laborum molestias obcaecati lorem
-        </p>
-      </CustomPopover>
+          {/* price */}
+          <div className="prod-card__price pb-2 me-4 d-flex flex-column justify-content-center">
+            {p.price.map((el, i) => (
+              <span key={`${p.id}-${el.symbol}`}>
+                {el.value} {i == 0 ? "$" : el.symbol}
+              </span>
+            ))}
+          </div>
 
-      {/* manager */}
-      <p className="prod-card__manager me-4 text-secondary">
-        Lorem Ipsumovich Dolorov
-      </p>
+          {/* group */}
+          <CustomPopover
+            content={p.title} // imitation of huge group name
+            maxLength={150} // if length will bigger, popover will run
+          >
+            <p className="prod-card__group me-4">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Consequuntur harum iure laborum molestias obcaecati lorem
+            </p>
+          </CustomPopover>
 
-      {/* order */}
-      <CustomPopover
-        content={`${p.title}${p.title}`} // imitation of huge group name
-        maxLength={150}
-      >
-        <p className="prod-card__group me-4">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur
-          harum iure laborum molestias obcaecati lorem
-        </p>
-      </CustomPopover>
+          {/* manager */}
+          <p className="prod-card__manager me-4 text-secondary">
+            Lorem Ipsumovich Dolorov
+          </p>
 
-      {/* date */}
-      <div className="prod-card__date me-3 d-flex flex-column justify-content-center">
-        <span className="prod-card__date-short align-self-center">
-          {formatDate(p.date).slice(0, 7)}
-        </span>
-        <span className="lh-1">{formatDate(p.date, locale)}</span>
-      </div>
+          {/* order */}
+          <CustomPopover
+            content={`${p.title}${p.title}`} // imitation of huge group name
+            maxLength={150}
+          >
+            <p className="prod-card__group me-4">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Consequuntur harum iure laborum molestias obcaecati lorem
+            </p>
+          </CustomPopover>
+
+          {/* date */}
+          <div className="prod-card__date me-3 d-flex flex-column justify-content-center align-items-center">
+            <span className="prod-card__date-short align-self-center">
+              {formatDate(p.date).slice(0, 7)}
+            </span>
+            <span className="lh-1">{formatDate(p.date, locale)}</span>
+          </div>
+        </>
+      )}
 
       <span
         className="prod-card__delete btn"
