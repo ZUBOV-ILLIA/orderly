@@ -12,9 +12,9 @@ export default async function ProductsPage() {
   const productTypes = [...new Set(products.map((product) => product.type))];
 
   return (
-    <div className="products py-5 px-4 px-md-5 flex-grow-1 overflow-hidden">
+    <div className="products">
       <div className="d-md-flex align-items-center">
-        <h2 className="mb-3 me-4 mb-md-0 fw-bolder text-nowrap animate__animated animate__backInLeft animate__faster">
+        <h2 className="products__title mb-3 me-4 mb-md-0 fw-bolder text-nowrap animate__animated animate__backInLeft animate__faster">
           {t("products")} 10 / 25
         </h2>
 

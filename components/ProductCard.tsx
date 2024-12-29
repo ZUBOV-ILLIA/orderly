@@ -51,19 +51,13 @@ export default function ProductCard({
 
   return (
     <div
-      className={`prod-card px-4 d-flex align-items-center justify-content-between bg-white border${orderList ? "-top" : "rounded-2"}`}
+      className={`prod-card ${orderList ? " border-top" : "px-4 border rounded-2"}`}
     >
-      <span className="prod-card__status-dot ms-2 me-3 position-relative bg-success rounded-circle"></span>
-      <Image
-        src={p.photo}
-        className="ms-1 me-3"
-        alt={p.title}
-        height={70}
-        width={70}
-      />
+      <span className="prod-card__status-dot bg-success"></span>
+      <Image src={p.photo} alt={p.title} height={70} width={70} />
 
       {/* name and serial number */}
-      <div className="me-4 d-flex flex-column justify-content-center">
+      <div className="prod-card__name-wrap" role="button">
         <CustomPopover content={p.title} maxLength={75}>
           <p className="prod-card__name">{p.title}</p>
         </CustomPopover>
@@ -71,30 +65,30 @@ export default function ProductCard({
       </div>
 
       {/* status */}
-      <span className="prod-card__status me-4 px-2 text-success text-center">
+      <span className="prod-card__status text-success text-center">
         Свободен
       </span>
 
-      {/* guarantee */}
       {!orderList && (
         <>
-          <div className="prod-card__guarantee me-4 pe-2 d-flex flex-column justify-content-center">
-            <p className="d-flex justify-content-between gap-2">
+          {/* guarantee */}
+          <div className="prod-card__guarantee">
+            <p className="prod-card__guarantee-dates">
               <span className="text-secondary">c</span>{" "}
               <span>{formatDate(p.guarantee.start)}</span>
             </p>
-            <p className="d-flex justify-content-between gap-2">
+            <p className="prod-card__guarantee-dates">
               <span className="text-secondary">по</span>{" "}
               <span>{formatDate(p.guarantee.end)}</span>
             </p>
           </div>
           {/* is new or used */}
-          <span className="prod-card__condition me-4 text-center">
+          <span className="prod-card__condition text-center">
             {t(p.isNew ? "new" : "used")}
           </span>
 
           {/* price */}
-          <div className="prod-card__price pb-2 me-4 d-flex flex-column justify-content-center">
+          <div className="prod-card__price">
             {p.price.map((el, i) => (
               <span key={`${p.id}-${el.symbol}`}>
                 {el.value} {i == 0 ? "$" : el.symbol}
@@ -104,17 +98,14 @@ export default function ProductCard({
 
           {/* group */}
           <CustomPopover
-            content={p.title} // imitation of huge group name
+            content={p.title + p.title} // imitation of huge group name
             maxLength={150} // if length will bigger, popover will run
           >
-            <p className="prod-card__group me-4">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Consequuntur harum iure laborum molestias obcaecati lorem
-            </p>
+            <p className="prod-card__group">{p.title}</p>
           </CustomPopover>
 
           {/* manager */}
-          <p className="prod-card__manager me-4 text-secondary">
+          <p className="prod-card__manager text-secondary">
             Lorem Ipsumovich Dolorov
           </p>
 
@@ -123,14 +114,11 @@ export default function ProductCard({
             content={`${p.title}${p.title}`} // imitation of huge group name
             maxLength={150}
           >
-            <p className="prod-card__group me-4">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Consequuntur harum iure laborum molestias obcaecati lorem
-            </p>
+            <p className="prod-card__group">{p.title}</p>
           </CustomPopover>
 
           {/* date */}
-          <div className="prod-card__date me-3 d-flex flex-column justify-content-center align-items-center">
+          <div className="prod-card__date">
             <span className="prod-card__date-short align-self-center">
               {formatDate(p.date).slice(0, 7)}
             </span>
@@ -151,7 +139,7 @@ export default function ProductCard({
         <div>
           <h3 className="p-4 border-bottom">{t("sureToDeleteProduct")}</h3>
 
-          <div className="mx-4 prod-card px-4 d-flex align-items-center bg-white">
+          <div className="prod-card px-4">
             <span className="prod-card__status-dot ms-2 me-3 position-relative bg-success rounded-circle"></span>
 
             <Image
@@ -163,10 +151,8 @@ export default function ProductCard({
             />
 
             {/* name and serial number */}
-            <div className="me-4 d-flex flex-column justify-content-center">
-              <CustomPopover content={p.title} maxLength={80}>
-                <p className="prod-card__name">{p.title}</p>
-              </CustomPopover>
+            <div className="prod-card__name-wrap me-4">
+              <p className="prod-card__name">{p.title}</p>
               <p className="text-secondary">{p.serialNumber}</p>
             </div>
           </div>

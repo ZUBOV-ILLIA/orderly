@@ -1,9 +1,17 @@
 .orders {
+  padding: 72px 16px 0 126px;
+  flex-grow: 1;
   background-color: #F0F3F5;
+  overflow: hidden;
 
   &__add-order-btn {
     height: 30px;
     width: 30px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
 
     &::after {
       content: "";
@@ -19,25 +27,52 @@
   }
 
   &__list {
-    padding-top: 70px;
+    padding-top: 50px;
+    display: flex;
+    align-items: start;
   }
 
   &__prod-side {
+    display: flex;
+    padding-left: 16px;
+  }
 
+  &__prod-side-head {
+    padding: 40px 40px 12px;
   }
 
   &__add-product-btn {
     height: 20px;
     width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
   }
 
   &__prod-list {
-    max-width: 100%;
+    padding: 16px 0;
   }
 
   .prod-card {
+    width: calc(.0001% + 1000px);
+
+    &__name {
+      width: 100%;
+    }
+
+    &__status {
+      margin-left: auto;
+    }
     &:hover {
-      border-bottom: 1px solid #dee2e6;
+      box-shadow: inset 0 0 5px 5px #0000002d;
     }
   }
+}
+
+.lll {
+  overflow-x: scroll;
+}
+ .www {
+   width: calc(.01% + 2600px);
 }

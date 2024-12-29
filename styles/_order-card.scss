@@ -1,37 +1,54 @@
 .order-card {
+  width: 100%;
+  padding: 0 24px;
   height: 70px;
-  min-width: 100%;
-  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  border-radius: 8px;
+  transition: box-shadow .3s;
 
   &--is-open {
-    .order-card__name, .order-card__price, .order-card__delete {
+    .order-card__name-wrap, .order-card__price, .order-card__delete {
       padding: 0;
-      margin: 0;
-      max-width: 0;
-      min-width: 0;
+      width: 0;
       opacity: 0;
-      visibility: hidden;
     }
   }
 
   &:hover {
-    box-shadow: 0 1rem 3rem #0000002d;
+    box-shadow: 0 0 5px 5px #0000002d;
+  }
+
+  &__name-wrap {
+    width: 500px;
+    max-width: 500px;
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    overflow: hidden;
+    transition: .3s;
   }
 
   &__name {
-    min-width: 150px;
-    max-width: 650px;
+
     display: -webkit-box;
     text-decoration: underline #6c757d;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
-    overflow: hidden;
-    transition: margin, padding, max-width .3s;
   }
 
   &__menu-btn {
+    margin-right: 16px;
     height: 40px;
-    min-width: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 100%;
+
     transition: border-color .3s;
 
     &:hover {
@@ -39,11 +56,29 @@
     }
   }
 
+  &__prod-quantity {
+    margin-right: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    line-height: 1;
+
+    & :last-child {
+      font-size: .8rem;
+      color: #6c757d;
+    }
+  }
+
   &__price {
-    min-width: 150px;
-    max-width: 150px;
+    padding-bottom: 8px;
+    width: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
     overflow: hidden;
-    transition: margin, padding, max-width .3s;
+    transition: .3s;
 
     & :first-child {
       font-size: .7rem;
@@ -55,8 +90,14 @@
   }
 
   &__date {
-    min-width: 150px;
-    max-width: 150px;
+    margin-right: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    line-height: 1;
+    text-wrap: nowrap;
   }
 
   &__date-short {
@@ -65,10 +106,10 @@
   }
 
   &__delete {
-    min-width: 50px;
-    max-width: 50px;
+    width: 50px;
     overflow: hidden;
-    transition: margin, padding, max-width .3s;
+    flex-shrink: 0;
+    transition: .3s;
 
     &:hover {
       border-color: black;

@@ -1,15 +1,26 @@
 .prod-card {
   height: 70px;
-  min-width: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  transition: box-shadow .3s;
 
   &:hover {
-    box-shadow: 0 1rem 3rem #0000002d;
+    box-shadow: 0 0 5px 5px #0000002d;
   }
 
   &__status-dot {
     height: 12px;
     width: 12px;
     flex-shrink: 0;
+    border-radius: 100%;
+  }
+
+  &__name-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   &__name {
@@ -23,10 +34,20 @@
 
   &__status {
     width: 100px;
+    text-align: center;
   }
 
   &__guarantee {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 140px;
+  }
+
+  &__guarantee-dates {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
   }
 
   &__condition {
@@ -35,6 +56,9 @@
 
   &__price {
     width: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     & :first-child {
       font-size: .7rem;
@@ -60,6 +84,10 @@
 
   &__date {
     width: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   &__date-short {
@@ -75,5 +103,15 @@
 }
 
 .custom-modal .prod-card {
-  min-width: auto;
+  min-height: 70px;
+  height: auto;
+
+  &:hover {
+    box-shadow: none;
+  }
+
+  &__name {
+    width: 100%;
+    -webkit-line-clamp: none;
+  }
 }

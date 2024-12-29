@@ -6,7 +6,7 @@ import { formatDate } from "@/utils/helpers";
 import { useLocale } from "next-intl";
 import { ListUl, Trash3Fill } from "react-bootstrap-icons";
 import CustomModal from "@/components/CustomModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 export default function OrderCard({
@@ -20,8 +20,21 @@ export default function OrderCard({
 }) {
   const t = useTranslations();
   const locale = useLocale();
-
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  useEffect(() => {
+    function handleKeyDown() {
+      window.onkeydown = (e: KeyboardEvent) => {
+        if (e.key == "Escape") {
+          setOrderIsOpen(false);
+        }
+      };
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [setOrderIsOpen]);
 
   function handleCloseModal() {
     setModalIsOpen(false);
@@ -56,47 +69,40 @@ export default function OrderCard({
 
   return (
     <div
-      className={`order-card ${orderIsOpen ? "order-card--is-open" : ""} px-4 d-flex align-items-center bg-white border rounded-2`}
+      className={`order-card ${orderIsOpen ? "order-card--is-open" : ""} border`}
       role="button"
       onClick={() => setOrderIsOpen(true)}
     >
-      {/* name */}
-      <div className="pe-3 d-flex align-items-center flex-grow-1">
+      <div className="order-card__name-wrap">
         <p className="order-card__name">{o.title}</p>
       </div>
 
-      <span
-        className="order-card__menu-btn me-4 d-flex align-items-center justify-content-center flex-shrink-0 border rounded-circle"
-        role="button"
-      >
+      <span className="order-card__menu-btn border" role="button">
         <ListUl className="text-secondary" size={24} />
       </span>
 
-      {/* quantity */}
-      <div className="order-card__prod-quantity me-4 d-flex flex-column justify-content-center flex-shrink-0">
+      <div className="order-card__prod-quantity">
         <span>23</span>
         <span>Продукта</span>
       </div>
 
-      {/* date */}
-      <div className="order-card__date me-4 d-flex flex-column justify-content-center align-items-center flex-shrink-0">
-        <span className="order-card__date-short align-self-center">
+      <div className="order-card__date">
+        <span className="order-card__date-short">
           {formatDate(o.date).slice(0, 7)}
         </span>
-        <span className="lh-1 text-nowrap">{formatDate(o.date, locale)}</span>
+        <span className="text-nowrap">{formatDate(o.date, locale)}</span>
       </div>
 
-      {/* price */}
-      <div className="order-card__price pb-2 d-flex flex-column justify-content-center flex-shrink-0">
+      <div className="order-card__price">
         {o.price.map((el, i) => (
-          <span key={`${o.id}-${el.symbol}`} className="text-nowrap">
+          <span key={`${o.id}-${el.symbol}`}>
             {el.value} {i == 0 ? "$" : el.symbol}
           </span>
         ))}
       </div>
 
       <span
-        className="order-card__delete btn flex-shrink-0"
+        className="order-card__delete btn"
         role="button"
         onClick={handleOpenModal}
       >
@@ -105,10 +111,9 @@ export default function OrderCard({
 
       <CustomModal isOpen={modalIsOpen} onClose={handleCloseModal}>
         <div>
-          <h3 className="p-4 border-bottom">{t("sureToDeleteProduct")}</h3>
+          <h3 className="p-4 border-bottom">{t("sureToDeleteOrder")}</h3>
 
-          <div className="mx-4 order-card px-4 d-flex align-items-center bg-white">
-            {/* name */}
+          <div className="order-card px-4 w-100 d-flex align-items-center rounded-0 bg-white">
             <p className="order-card__name me-4 d-flex align-items-center justify-content-center">
               {o.title}
             </p>
