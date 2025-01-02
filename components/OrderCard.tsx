@@ -94,11 +94,14 @@ export default function OrderCard({
       </div>
 
       <div className="order-card__price">
-        {o.price.map((el, i) => (
-          <span key={`${o.id}-${el.symbol}`}>
-            {el.value} {i == 0 ? "$" : el.symbol}
-          </span>
-        ))}
+        {/*{o.price.map((el, i) => (*/}
+        {/*  <span key={`${o.id}-${el.symbol}`}>*/}
+        {/*    {el.value} {i == 0 ? "$" : el.symbol}*/}
+        {/*  </span>*/}
+        {/*))}*/}
+
+        <span>2300 UAH</span>
+        <span>50 $</span>
       </div>
 
       <span

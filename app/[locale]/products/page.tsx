@@ -1,18 +1,36 @@
-// import { useTranslations } from "next-intl";
-import { getTranslations } from "next-intl/server";
+"use client";
+
+import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
+import { getProducts } from "@/api/api";
 import CustomSelect from "@/components/CustomSelect";
 import ProductCard from "@/components/ProductCard";
 import "@/styles/_products.scss";
 
-import products from "@/api/products.json";
+export default function ProductsPage() {
+  const t = useTranslations();
+  const [products, setProducts] = useState<Product[] | null>(null);
+  const [productTypes, setProductTypes] = useState<string[]>([]);
 
-export default async function ProductsPage() {
-  const t = await getTranslations();
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const data = await getProducts();
 
-  const productTypes = [...new Set(products.map((product) => product.type))];
+        if (data) {
+          setProducts(data);
+          setProductTypes([...new Set(data.map((product) => product.type))]);
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   return (
-    <div className="products">
+    <div className="page products">
       <div className="d-md-flex align-items-center">
         <h2 className="products__title mb-3 me-4 mb-md-0 fw-bolder text-nowrap animate__animated animate__backInLeft animate__faster">
           {t("products")} 10 / 25
@@ -20,17 +38,21 @@ export default async function ProductsPage() {
 
         <div className="d-sm-flex align-items-center flex-grow-1 animate__animated animate__backInRight animate__faster">
           <span className="me-2">{t("type")}:</span>
-          <div className="flex-grow-1">
-            <CustomSelect options={productTypes} />
-          </div>
+          {productTypes.length > 0 && (
+            <div className="flex-grow-1">
+              <CustomSelect options={productTypes} />
+            </div>
+          )}
         </div>
       </div>
 
-      <div className="products__list d-flex flex-column gap-3 overflow-x-scroll">
-        {products.slice(0, 10).map((product) => (
-          <ProductCard key={product.id} p={product} />
-        ))}
-      </div>
+      {products && (
+        <div className="products__list d-flex flex-column gap-3 overflow-x-auto">
+          {products.map((product) => (
+            <ProductCard key={product.id} p={product} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

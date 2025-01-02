@@ -4,7 +4,7 @@ interface Guarantee {
 }
 
 interface Price {
-  value: number;
+  value: string;
   symbol: string;
   isDefault: number;
 }
@@ -17,10 +17,10 @@ interface Product {
   title: string;
   type: string;
   specification: string;
-  guarantee: Guarantee;
-  price: Price[];
-  order: number;
+  guarantee_start: string;
+  guarantee_end: string;
   date: string;
+  prices: Price[];
 }
 
 interface Order {

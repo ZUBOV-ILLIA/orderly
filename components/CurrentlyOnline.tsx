@@ -8,7 +8,6 @@ export default function CurrentlyOnline() {
 
   useEffect(() => {
     const socket = new WebSocket(String(process.env.NEXT_PUBLIC_WEBSOCKET_URL));
-    // const socket = new WebSocket("ws://localhost:3005");
 
     socket.addEventListener("message", (event) => {
       setClientsLength(JSON.parse(event.data).clientsLength);

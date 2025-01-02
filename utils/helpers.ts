@@ -1,10 +1,11 @@
 export function formatDate(input: string, locale: string = ""): string {
-  const [date] = input.split(" ");
-  const [year, month, day] = date.split("-");
+  const dateObj = new Date(input);
 
-  const resultMonth = locale
-    ? new Date(input).toLocaleString(locale, { month: "short" })
-    : month;
+  const day = dateObj.getUTCDate().toString().padStart(2, "0");
+  const year = dateObj.getUTCFullYear();
+  const month = locale
+    ? dateObj.toLocaleString(locale, { month: "short" })
+    : (dateObj.getUTCMonth() + 1).toString().padStart(2, "0");
 
-  return `${day} / ${resultMonth.slice(0, 3)} / ${year}`;
+  return `${day} / ${month.slice(0, 3)} / ${year}`;
 }

@@ -61,7 +61,7 @@ export default function Clocks() {
       <div className="d-flex align-items-center gap-1">
         <span>{formatDate(currentDate, "dayNumber")}</span>
         <span className="text-capitalize">
-          {formatDate(currentDate, "monthName").slice(0, 3)},
+          {formatDate(currentDate, "monthName").slice(0, 3)}
         </span>
         <span className="me-2">{formatDate(currentDate, "yearNumber")}</span>
 

@@ -2,7 +2,7 @@
   height: 70px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  //justify-content: space-between;
   background-color: white;
   transition: box-shadow .3s;
 
@@ -17,6 +17,15 @@
     border-radius: 100%;
   }
 
+  &__img-wrap {
+    height: 100%;
+    width: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
   &__name-wrap {
     display: flex;
     flex-direction: column;
@@ -25,19 +34,15 @@
 
   &__name {
     text-decoration: underline #6c757d;
-    width: 430px;
+    width: max-content;
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
   }
 
-  &__status {
-    width: 100px;
-    text-align: center;
-  }
-
   &__guarantee {
+    margin-left: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -51,6 +56,7 @@
   }
 
   &__condition {
+    margin: 0 16px;
     width: 55px;
   }
 
@@ -69,7 +75,8 @@
     }
   }
 
-  &__group {
+  &__order {
+    margin: 0 16px;
     width: 400px;
     overflow: hidden;
     display: -webkit-box;
@@ -105,9 +112,15 @@
 .custom-modal .prod-card {
   min-height: 70px;
   height: auto;
+  justify-content: start;
 
   &:hover {
     box-shadow: none;
+  }
+
+  &__name-wrap {
+    margin: 0 16px;
+    width: 100%;
   }
 
   &__name {

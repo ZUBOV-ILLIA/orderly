@@ -3,7 +3,7 @@
 import Image from "next/image";
 import "@/styles/_product-card.scss";
 import { useTranslations } from "next-intl";
-import { Trash3Fill } from "react-bootstrap-icons";
+import { Image as BImage, Trash3Fill } from "react-bootstrap-icons";
 import CustomModal from "@/components/CustomModal";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -47,7 +47,13 @@ export default function OrderPageProductCard({
   return (
     <div className="prod-card px-4 border-top">
       <span className="prod-card__status-dot ms-3 me-4 bg-success" />
-      <Image src={p.photo} alt={p.title} height={70} width={70} />
+      <div className="prod-card__img-wrap">
+        {p.photo ? (
+          <Image src={p.photo} alt={p.title} height={70} width={70} />
+        ) : (
+          <BImage size={40} className="flex-shrink-0 text-secondary" />
+        )}
+      </div>
 
       <div className="prod-card__name-wrap px-3" role="button">
         <p className="prod-card__name">{p.title}</p>

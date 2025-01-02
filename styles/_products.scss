@@ -1,5 +1,4 @@
 .products {
-  padding: 72px 24px 0 126px;
   flex-grow: 1;
   background-color: #F0F3F5;
   overflow: hidden;
@@ -10,6 +9,7 @@
   }
 
   .prod-card {
-    width: 2500px;
+    min-width: 1500px;
+    width: 100%;
   }
 }

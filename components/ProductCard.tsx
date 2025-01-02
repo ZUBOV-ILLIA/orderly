@@ -6,21 +6,14 @@ import { useTranslations } from "next-intl";
 import CustomPopover from "@/components/CustomPopover";
 import { formatDate } from "@/utils/helpers";
 import { useLocale } from "next-intl";
-import { Trash3Fill } from "react-bootstrap-icons";
+import { Image as BImage, Trash3Fill } from "react-bootstrap-icons";
 import CustomModal from "@/components/CustomModal";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-export default function ProductCard({
-  p,
-  orderList,
-}: {
-  p: Product;
-  orderList?: boolean;
-}) {
+export default function ProductCard({ p }: { p: Product }) {
   const t = useTranslations();
   const locale = useLocale();
-
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   function handleCloseModal() {
@@ -50,13 +43,16 @@ export default function ProductCard({
   }
 
   return (
-    <div
-      className={`prod-card ${orderList ? " border-top" : "px-4 border rounded-2"}`}
-    >
-      <span className="prod-card__status-dot bg-success"></span>
-      <Image src={p.photo} alt={p.title} height={70} width={70} />
+    <div className="prod-card px-4 border rounded-2">
+      <span className="prod-card__status-dot bg-success" />
+      <div className="prod-card__img-wrap">
+        {p.photo ? (
+          <Image src={p.photo} alt={p.title} height={70} width={70} />
+        ) : (
+          <BImage size={40} className="flex-shrink-0 text-secondary" />
+        )}
+      </div>
 
-      {/* name and serial number */}
       <div className="prod-card__name-wrap" role="button">
         <CustomPopover content={p.title} maxLength={75}>
           <p className="prod-card__name">{p.title}</p>
@@ -64,68 +60,42 @@ export default function ProductCard({
         <p className="text-secondary">{p.serialNumber}</p>
       </div>
 
-      {/* status */}
-      <span className="prod-card__status text-success text-center">
-        Свободен
+      <div className="prod-card__guarantee">
+        <p className="prod-card__guarantee-dates">
+          <span className="text-secondary">c</span>{" "}
+          <span>{formatDate(p.guarantee_start)}</span>
+        </p>
+        <p className="prod-card__guarantee-dates">
+          <span className="text-secondary">по</span>{" "}
+          <span>{formatDate(p.guarantee_end)}</span>
+        </p>
+      </div>
+
+      <span className="prod-card__condition text-center">
+        {t(p.isNew ? "new" : "used")}
       </span>
 
-      {!orderList && (
-        <>
-          {/* guarantee */}
-          <div className="prod-card__guarantee">
-            <p className="prod-card__guarantee-dates">
-              <span className="text-secondary">c</span>{" "}
-              <span>{formatDate(p.guarantee.start)}</span>
-            </p>
-            <p className="prod-card__guarantee-dates">
-              <span className="text-secondary">по</span>{" "}
-              <span>{formatDate(p.guarantee.end)}</span>
-            </p>
-          </div>
-          {/* is new or used */}
-          <span className="prod-card__condition text-center">
-            {t(p.isNew ? "new" : "used")}
+      <div className="prod-card__price">
+        {p.prices.map((el, i) => (
+          <span key={`${p.id}-${el.symbol}`}>
+            {el.value} {i == 0 ? "$" : el.symbol}
           </span>
+        ))}
+      </div>
 
-          {/* price */}
-          <div className="prod-card__price">
-            {p.price.map((el, i) => (
-              <span key={`${p.id}-${el.symbol}`}>
-                {el.value} {i == 0 ? "$" : el.symbol}
-              </span>
-            ))}
-          </div>
+      <CustomPopover
+        content={`${p.title}${p.title}`} // imitation of huge group name
+        maxLength={150}
+      >
+        <p className="prod-card__order">{p.title}</p>
+      </CustomPopover>
 
-          {/* group */}
-          <CustomPopover
-            content={p.title + p.title} // imitation of huge group name
-            maxLength={150} // if length will bigger, popover will run
-          >
-            <p className="prod-card__group">{p.title}</p>
-          </CustomPopover>
-
-          {/* manager */}
-          <p className="prod-card__manager text-secondary">
-            Lorem Ipsumovich Dolorov
-          </p>
-
-          {/* order */}
-          <CustomPopover
-            content={`${p.title}${p.title}`} // imitation of huge group name
-            maxLength={150}
-          >
-            <p className="prod-card__group">{p.title}</p>
-          </CustomPopover>
-
-          {/* date */}
-          <div className="prod-card__date">
-            <span className="prod-card__date-short align-self-center">
-              {formatDate(p.date).slice(0, 7)}
-            </span>
-            <span className="lh-1">{formatDate(p.date, locale)}</span>
-          </div>
-        </>
-      )}
+      <div className="prod-card__date">
+        <span className="prod-card__date-short align-self-center">
+          {formatDate(p.date).slice(0, 7)}
+        </span>
+        <span className="lh-1">{formatDate(p.date, locale)}</span>
+      </div>
 
       <span
         className="prod-card__delete btn"
@@ -142,16 +112,15 @@ export default function ProductCard({
           <div className="prod-card px-4">
             <span className="prod-card__status-dot ms-2 me-3 position-relative bg-success rounded-circle"></span>
 
-            <Image
-              src={p.photo}
-              className="ms-1 me-3"
-              alt={p.title}
-              height={70}
-              width={70}
-            />
+            <div className="prod-card__img-wrap">
+              {p.photo ? (
+                <Image src={p.photo} alt={p.title} height={70} width={70} />
+              ) : (
+                <BImage size={40} className="flex-shrink-0 text-secondary" />
+              )}
+            </div>
 
-            {/* name and serial number */}
-            <div className="prod-card__name-wrap me-4">
+            <div className="prod-card__name-wrap">
               <p className="prod-card__name">{p.title}</p>
               <p className="text-secondary">{p.serialNumber}</p>
             </div>
