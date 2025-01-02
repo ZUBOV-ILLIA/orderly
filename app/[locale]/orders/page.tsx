@@ -7,6 +7,7 @@ import OrderPageProductCard from "@/components/OrderPageProductCard";
 import OrderCard from "@/components/OrderCard";
 import { getOrders, getProducts } from "@/api/api";
 import "@/styles/_orders.scss";
+import AddOrderModalBtn from "@/components/AddOrderModalBtn";
 
 export default function OrdersPage() {
   const t = useTranslations();
@@ -51,10 +52,8 @@ export default function OrdersPage() {
     <div className="page orders">
       <div className="d-md-flex align-items-center">
         <h2 className="me-4 d-flex align-items-center fw-bolder text-nowrap animate__animated animate__backInLeft animate__faster">
-          <div className="orders__add-order-btn bg-success" role="button">
-            <Plus className="text-white" size={18} />
-          </div>
-          {t("orders")} 10 / 25
+          <AddOrderModalBtn orders={orders} setOrders={setOrders} />
+          {t("orders")} {orders ? orders.length : ""}
         </h2>
       </div>
 
@@ -67,6 +66,8 @@ export default function OrdersPage() {
                 o={order}
                 orderIsOpen={orderIsOpen}
                 setOrderIsOpen={setOrderIsOpen}
+                orders={orders}
+                setOrders={setOrders}
               />
             ))}
           </div>

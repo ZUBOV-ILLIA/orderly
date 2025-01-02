@@ -15,7 +15,7 @@ export default function ProductsPage() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const data = await getProducts();
+        const data: Product[] = await getProducts();
 
         if (data) {
           setProducts(data);

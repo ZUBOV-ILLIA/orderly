@@ -19,6 +19,7 @@ interface Product {
   specification: string;
   guarantee_start: string;
   guarantee_end: string;
+  orderTitle: string;
   date: string;
   prices: Price[];
 }
@@ -28,5 +29,7 @@ interface Order {
   title: string;
   date: string;
   description: string;
-  price: Price[];
+  productsCount: number;
+  priceUAH: string | null;
+  priceUSD: string | null;
 }

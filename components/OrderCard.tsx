@@ -8,15 +8,20 @@ import { ListUl, Trash3Fill } from "react-bootstrap-icons";
 import CustomModal from "@/components/CustomModal";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { removeOrder } from "@/api/api";
 
 export default function OrderCard({
   o,
   orderIsOpen,
   setOrderIsOpen,
+  orders,
+  setOrders,
 }: {
   o: Order;
   orderIsOpen: boolean;
   setOrderIsOpen: (arg: boolean) => void;
+  orders: Order[] | null;
+  setOrders: (val: Order[]) => void;
 }) {
   const t = useTranslations();
   const locale = useLocale();
@@ -40,7 +45,11 @@ export default function OrderCard({
     setModalIsOpen(false);
   }
 
-  function handleDeleteOrder() {
+  async function handleDeleteOrder() {
+    await removeOrder(o.id);
+
+    setOrders(orders!.filter((order) => order.id !== o.id));
+
     toast.success(
       <div className="text-success">
         <span>The order</span> <p className="p-2 text-secondary">${o.title}</p>
@@ -82,8 +91,8 @@ export default function OrderCard({
       </span>
 
       <div className="order-card__prod-quantity">
-        <span>23</span>
-        <span>Продукта</span>
+        <span>{o.productsCount}</span>
+        <span>Продуктов</span>
       </div>
 
       <div className="order-card__date">
@@ -94,14 +103,8 @@ export default function OrderCard({
       </div>
 
       <div className="order-card__price">
-        {/*{o.price.map((el, i) => (*/}
-        {/*  <span key={`${o.id}-${el.symbol}`}>*/}
-        {/*    {el.value} {i == 0 ? "$" : el.symbol}*/}
-        {/*  </span>*/}
-        {/*))}*/}
-
-        <span>2300 UAH</span>
-        <span>50 $</span>
+        <span>{o.priceUAH ? o.priceUAH : 0} UAH</span>
+        <span>{o.priceUSD ? o.priceUSD : 0} $</span>
       </div>
 
       <span

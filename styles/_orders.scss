@@ -73,9 +73,7 @@
   }
 }
 
-.lll {
-  overflow-x: scroll;
-}
- .www {
-   width: calc(.01% + 2600px);
+.custom-modal .orders__add-product-content {
+  width: 600px;
+  max-width: 100%;
 }
