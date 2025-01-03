@@ -2,6 +2,7 @@
   width: 100%;
   padding: 0 24px;
   height: 70px;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -10,11 +11,15 @@
   transition: box-shadow .3s;
 
   &--is-open {
+    padding: 0 58px 0 24px;
+
     .order-card__name-wrap, .order-card__price, .order-card__delete {
       padding: 0;
       width: 0;
       min-width: 0;
       opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
     }
   }
 
@@ -33,7 +38,6 @@
   }
 
   &__name {
-
     display: -webkit-box;
     text-decoration: underline #6c757d;
     -webkit-box-orient: vertical;
@@ -115,6 +119,19 @@
     &:hover {
       border-color: black;
     }
+  }
+
+  &__active-marker {
+    width: 40px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #dee2e6;
+    border-radius: 0 6px 6px 0;
   }
 }
 

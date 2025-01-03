@@ -5,18 +5,17 @@ import React, { useState } from "react";
 import CustomModal from "@/components/CustomModal";
 import { useTranslations } from "next-intl";
 import { createOrder } from "@/api/api";
+import { useDispatch } from "react-redux";
+import { addOrder } from "@/redux/slices/ordersSlice";
 
-export default function AddOrderModalBtn({
-  orders,
-  setOrders,
-}: {
-  orders: Order[] | null;
-  setOrders: (val: Order[]) => void;
-}) {
+export default function AddOrderModalBtn() {
   const t = useTranslations();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [orderTitle, setOrderTitle] = useState("");
   const [orderDescription, setOrderDescription] = useState("");
+  const [pending, setPending] = useState(false);
+
+  const dispatch = useDispatch();
 
   function handleCloseModal() {
     setModalIsOpen(false);
@@ -25,8 +24,8 @@ export default function AddOrderModalBtn({
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
-      if (!orders) return;
 
+      setPending(true);
       const order = await createOrder({
         title: orderTitle,
         description: orderDescription,
@@ -38,17 +37,13 @@ export default function AddOrderModalBtn({
       setOrderTitle("");
       setOrderDescription("");
 
-      setOrders([
-        ...orders,
-        {
-          ...order,
-          productsCount: 0,
-          priceUAH: null,
-          priceUSD: null,
-        },
-      ]);
+      dispatch(
+        addOrder({ ...order, productsCount: 0, priceUAH: null, priceUSD: null })
+      );
     } catch (e) {
       console.error(e);
+    } finally {
+      setPending(false);
     }
   };
 
@@ -70,7 +65,7 @@ export default function AddOrderModalBtn({
               <input
                 type="text"
                 className="form-control rounded-0"
-                placeholder="Название прихода"
+                placeholder={t("orderName")}
                 value={orderTitle}
                 onChange={(e) => setOrderTitle(e.target.value)}
                 minLength={1}
@@ -78,7 +73,7 @@ export default function AddOrderModalBtn({
               />
               <textarea
                 className="form-control rounded-0"
-                placeholder="Описание прихода"
+                placeholder={t("orderDescription")}
                 value={orderDescription}
                 onChange={(e) => setOrderDescription(e.target.value)}
               />
@@ -94,8 +89,15 @@ export default function AddOrderModalBtn({
               <button
                 className="btn px-4 d-flex align-items-center gap-2 bg-white text-success rounded-5 shadow"
                 type="submit"
+                disabled={pending}
               >
-                Добавить
+                {pending && (
+                  <div
+                    className="spinner-border spinner-border-sm"
+                    role="status"
+                  />
+                )}
+                {t("addWord")}
               </button>
             </div>
           </form>

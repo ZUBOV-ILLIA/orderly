@@ -13,5 +13,18 @@
   "sureToDeleteProduct": "Вы уверены, что хотите удалить этот продукт ?",
   "sureToDeleteOrder": "Вы уверены, что хотите удалить этот приход ?",
   "cancel": "Отменить",
-  "delete": "Удалить"
+  "delete": "Удалить",
+  "ordersEmpty": "Список приходов пуст",
+  "theOrder": "Приход",
+  "hasBeenDeleted": "был удален",
+  "productsWord": "Продуктов",
+  "addProduct": "Добавить продукт",
+  "addWord": "Добавить",
+  "orderName": "Название прихода",
+  "orderDescription": "Описание прихода",
+  "productName": "Название продукта",
+  "productType": "Тип продукта",
+  "productSpecification": "Спецификация продукта",
+  "productPrice": "Цена продукта в UAH",
+  "serialNumber": "Серийный номер"
 }

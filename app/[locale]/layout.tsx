@@ -11,6 +11,7 @@ import AddBootstrap from "@/AddBootstrap";
 import Header from "@/components/Header";
 import NavigationMenu from "@/components/NavigationMenu";
 import { ToastContainer } from "react-toastify";
+import StoreProvider from "@/redux/StoreProvider";
 
 export const metadata: Metadata = {
   title: "Orderly",
@@ -36,15 +37,17 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <NextIntlClientProvider messages={messages}>
-        <AddBootstrap />
-        <body className="min-vh-100 d-flex flex-column align-items-start">
-          <Header />
-          <div className="w-100 d-flex flex-grow-1">
-            <NavigationMenu />
-            {children}
-          </div>
-          <ToastContainer />
-        </body>
+        <StoreProvider>
+          <AddBootstrap />
+          <body className="min-vh-100 d-flex flex-column align-items-start">
+            <Header />
+            <div className="w-100 d-flex flex-grow-1">
+              <NavigationMenu />
+              {children}
+            </div>
+            <ToastContainer />
+          </body>
+        </StoreProvider>
       </NextIntlClientProvider>
     </html>
   );

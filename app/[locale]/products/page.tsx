@@ -33,7 +33,7 @@ export default function ProductsPage() {
     <div className="page products">
       <div className="d-md-flex align-items-center">
         <h2 className="products__title mb-3 me-4 mb-md-0 fw-bolder text-nowrap animate__animated animate__backInLeft animate__faster">
-          {t("products")} 10 / 25
+          {t("products")} {products?.length}
         </h2>
 
         <div className="d-sm-flex align-items-center flex-grow-1 animate__animated animate__backInRight animate__faster">

@@ -13,5 +13,18 @@
   "sureToDeleteProduct": "Are you sure you want to delete this product ?",
   "sureToDeleteOrder": "Are you sure you want to delete this order ?",
   "cancel": "Cancel",
-  "delete": "Delete"
+  "delete": "Delete",
+  "ordersEmpty": "The order list is empty",
+  "theOrder": "The order",
+  "hasBeenDeleted": "has been deleted",
+  "productsWord": "Products",
+  "addProduct": "Add product",
+  "addWord": "Add",
+  "orderName": "Order title",
+  "orderDescription": "Order description",
+  "productName": "Product name",
+  "productType": "Product type",
+  "productSpecification": "Product specification",
+  "productPrice": "Product price in UAH",
+  "serialNumber": "Serial number"
 }

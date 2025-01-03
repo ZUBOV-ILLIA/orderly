@@ -45,7 +45,7 @@ export default function OrderPageProductCard({
   }
 
   return (
-    <div className="prod-card px-4 border-top">
+    <div className="prod-card px-4 border-top animate__animated animate__bounceIn">
       <span className="prod-card__status-dot ms-3 me-4 bg-success" />
       <div className="prod-card__img-wrap">
         {p.photo ? (
