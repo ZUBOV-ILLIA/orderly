@@ -16,11 +16,21 @@ export const addProduct = async (
   orderId: number,
   product: Pick<
     Product,
-    "title" | "serialNumber" | "isNew" | "orderTitle" | "type" | "specification"
+    "title" | "serialNumber" | "isNew" | "type" | "specification"
   > & { price: number; photo: string }
 ) => {
   try {
     const res = await axios.post(`${API}/products/create/${orderId}`, product);
+
+    return res.data;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+export const removeProduct = async (productId: number) => {
+  try {
+    const res = await axios.delete(`${API}/products/${productId}`);
 
     return res.data;
   } catch (e) {

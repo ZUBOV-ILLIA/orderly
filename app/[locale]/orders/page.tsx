@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { X } from "react-bootstrap-icons";
-import OrderPageProductCard from "@/components/OrderPageProductCard";
 import OrderCard from "@/components/OrderCard";
 import { getOrderProducts, getOrders } from "@/api/api";
 import "@/styles/_orders.scss";
@@ -12,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/strore";
 import { selectOrder, setOrders } from "@/redux/slices/ordersSlice";
 import AddProductModalBtn from "@/components/AddProductModalBtn";
+import ProductCard from "@/components/ProductCard";
 
 export default function OrdersPage() {
   const t = useTranslations();
@@ -68,7 +68,7 @@ export default function OrdersPage() {
   }, [activeOrder?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="page orders">
+    <div className="page orders ">
       <div className="d-md-flex align-items-center">
         <h2 className="d-flex align-items-center fw-bolder text-nowrap animate__animated animate__backInLeft animate__faster">
           <AddOrderModalBtn />
@@ -94,7 +94,7 @@ export default function OrdersPage() {
 
       {orders.length > 0 && (
         <div className="orders__list animate__animated animate__bounceIn">
-          <div className="d-flex flex-column gap-3">
+          <div className="d-flex flex-column align-items-start gap-3">
             {orders.map((order) => (
               <OrderCard key={order.id} o={order} />
             ))}
@@ -131,7 +131,13 @@ export default function OrdersPage() {
                 {products && (
                   <div className="orders__prod-list overflow-x-auto">
                     {products.map((product) => (
-                      <OrderPageProductCard key={product.id} p={product} />
+                      <ProductCard
+                        key={product.id}
+                        p={product}
+                        products={products}
+                        setProducts={setProducts}
+                        ordersPage
+                      />
                     ))}
                   </div>
                 )}

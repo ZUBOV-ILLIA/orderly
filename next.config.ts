@@ -9,6 +9,14 @@ const nextConfig: NextConfig = {
     quietDeps: true,
     silenceDeprecations: ["legacy-js-api", "import"],
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "res.cloudinary.com",
+      },
+    ],
+  },
 };
 
 export default withNextIntl(nextConfig);

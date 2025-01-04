@@ -19,7 +19,7 @@ interface Product {
   specification: string;
   guarantee_start: string;
   guarantee_end: string;
-  orderTitle: string;
+  order: Order;
   date: string;
   prices: Price[];
 }

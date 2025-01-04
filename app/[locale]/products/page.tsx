@@ -49,7 +49,12 @@ export default function ProductsPage() {
       {products && (
         <div className="products__list d-flex flex-column gap-3 overflow-x-auto">
           {products.map((product) => (
-            <ProductCard key={product.id} p={product} />
+            <ProductCard
+              key={product.id}
+              p={product}
+              products={products}
+              setProducts={setProducts}
+            />
           ))}
         </div>
       )}

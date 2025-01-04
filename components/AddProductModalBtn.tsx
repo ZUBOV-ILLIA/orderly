@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 import { addProduct } from "@/api/api";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/strore";
+import { CldUploadWidget } from "next-cloudinary";
 
 export default function AddProductModalBtn({
   products,
@@ -24,6 +25,7 @@ export default function AddProductModalBtn({
   const [serialNum, setSerialNum] = useState("");
   const [isNew, setIsNew] = useState(false);
   const [pending, setPending] = useState(false);
+  const [photo, setPhoto] = useState({ url: "", imgName: "", format: "" });
 
   const activeOrder = useSelector(
     (state: RootState) => state.ordersSlice.selectedOrder
@@ -43,11 +45,10 @@ export default function AddProductModalBtn({
         title,
         serialNumber: +serialNum,
         isNew: isNew ? 1 : 0,
-        orderTitle: activeOrder.title,
         type: productType,
         specification: specification,
         price: +price,
-        photo: "",
+        photo: photo.url,
       });
 
       if (!product) return;
@@ -82,31 +83,47 @@ export default function AddProductModalBtn({
 
       <CustomModal isOpen={modalIsOpen} onClose={handleCloseModal}>
         <div>
-          <h3 className="p-4 border-bottom">Добавить приход</h3>
+          <h3 className="p-4 border-bottom">{t("addOrder")}</h3>
+
+          <div className="w-100 pt-3 px-3">
+            <CldUploadWidget
+              uploadPreset="orderly"
+              onSuccess={(
+                results: any // eslint-disable-line
+              ) => {
+                setPhoto({
+                  url: results.info?.url || "",
+                  imgName: results.info?.original_filename || "",
+                  format: results.info?.format || "",
+                });
+              }}
+            >
+              {({ open }) => {
+                return (
+                  <button
+                    className="btn btn-outline-success btn-sm w-100"
+                    onClick={() => open()}
+                  >
+                    {photo.imgName
+                      ? `${photo.imgName}.${photo.format}`
+                      : t("uploadImage")}
+                  </button>
+                );
+              }}
+            </CldUploadWidget>
+          </div>
+
           <form onSubmit={onSubmit}>
             <div className="orders__add-product-content d-flex flex-column gap-3 p-3">
-              <div className="d-flex align-items-center gap-3">
-                <input
-                  type="text"
-                  className="form-control rounded-0"
-                  placeholder={t("productName")}
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  minLength={1}
-                  required
-                />
-                <div className="d-flex gap-2">
-                  <label className="form-check-label text-nowrap">
-                    {t("new")} ?
-                  </label>
-                  <input
-                    type="checkbox"
-                    className="form-check-input scale"
-                    checked={isNew}
-                    onChange={(e) => setIsNew(e.target.checked)}
-                  />
-                </div>
-              </div>
+              <input
+                type="text"
+                className="form-control rounded-0"
+                placeholder={t("productName")}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                minLength={1}
+                required
+              />
               <div className="d-flex flex-column flex-md-row align-items-center gap-3">
                 <input
                   type="text"
@@ -134,15 +151,28 @@ export default function AddProductModalBtn({
                   required
                 />
               </div>
-              <input
-                type="text"
-                className="form-control rounded-0"
-                placeholder={t("productType")}
-                value={productType}
-                onChange={(e) => setProductType(e.target.value)}
-                minLength={1}
-                required
-              />
+              <div className="d-flex align-items-center gap-3">
+                <input
+                  type="text"
+                  className="form-control rounded-0"
+                  placeholder={t("productType")}
+                  value={productType}
+                  onChange={(e) => setProductType(e.target.value)}
+                  minLength={1}
+                  required
+                />
+                <div className="d-flex gap-2">
+                  <label className="form-check-label text-nowrap">
+                    {t("new")} ?
+                  </label>
+                  <input
+                    type="checkbox"
+                    className="form-check-input scale"
+                    checked={isNew}
+                    onChange={(e) => setIsNew(e.target.checked)}
+                  />
+                </div>
+              </div>
               <textarea
                 className="form-control rounded-0"
                 placeholder={t("productSpecification")}

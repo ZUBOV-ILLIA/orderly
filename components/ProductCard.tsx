@@ -10,8 +10,19 @@ import { Image as BImage, Trash3Fill } from "react-bootstrap-icons";
 import CustomModal from "@/components/CustomModal";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { removeProduct } from "@/api/api";
 
-export default function ProductCard({ p }: { p: Product }) {
+export default function ProductCard({
+  p,
+  products,
+  setProducts,
+  ordersPage = false,
+}: {
+  p: Product;
+  products: Product[];
+  setProducts: (val: Product[]) => void;
+  ordersPage?: boolean;
+}) {
   const t = useTranslations();
   const locale = useLocale();
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -20,34 +31,48 @@ export default function ProductCard({ p }: { p: Product }) {
     setModalIsOpen(false);
   }
 
-  function handleDeleteProduct() {
-    toast.success(
-      <div className="text-success">
-        <span>The product</span>{" "}
-        <p className="p-2 text-secondary">${p.title}</p>
-        <span>has been deleted!</span>
-      </div>,
-      {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      }
-    );
+  async function handleDeleteProduct() {
+    try {
+      await removeProduct(p.id);
 
-    handleCloseModal();
+      setProducts(products.filter((el) => el.id !== p.id));
+
+      toast.success(
+        <div className="text-success">
+          <span>The product</span>{" "}
+          <p className="p-2 text-secondary">${p.title}</p>
+          <span>has been deleted!</span>
+        </div>,
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        }
+      );
+    } catch (e) {
+      console.error(e);
+    } finally {
+      handleCloseModal();
+    }
   }
 
   return (
-    <div className="prod-card px-4 border rounded-2">
+    <div className="prod-card">
       <span className="prod-card__status-dot bg-success" />
       <div className="prod-card__img-wrap">
         {p.photo ? (
-          <Image src={p.photo} alt={p.title} height={70} width={70} />
+          <Image
+            src={p.photo}
+            alt={p.title}
+            height={68}
+            width={70}
+            style={{ objectFit: "cover" }}
+          />
         ) : (
           <BImage size={40} className="flex-shrink-0 text-secondary" />
         )}
@@ -60,42 +85,47 @@ export default function ProductCard({ p }: { p: Product }) {
         <p className="text-secondary">{p.serialNumber}</p>
       </div>
 
-      <div className="prod-card__guarantee">
-        <p className="prod-card__guarantee-dates">
-          <span className="text-secondary">c</span>{" "}
-          <span>{formatDate(p.guarantee_start)}</span>
-        </p>
-        <p className="prod-card__guarantee-dates">
-          <span className="text-secondary">по</span>{" "}
-          <span>{formatDate(p.guarantee_end)}</span>
-        </p>
-      </div>
+      {!ordersPage && (
+        <div className="prod-card__guarantee">
+          <p className="prod-card__guarantee-dates">
+            <span className="text-secondary">c</span>{" "}
+            <span>{formatDate(p.guarantee_start)}</span>
+          </p>
+          <p className="prod-card__guarantee-dates">
+            <span className="text-secondary">по</span>{" "}
+            <span>{formatDate(p.guarantee_end)}</span>
+          </p>
+        </div>
+      )}
 
-      <span className="prod-card__condition text-center">
+      <span
+        className={`prod-card__condition text-center ${p.isNew ? "text-success" : ""}`}
+      >
         {t(p.isNew ? "new" : "used")}
       </span>
 
-      <div className="prod-card__price">
-        {p.prices.map((el, i) => (
-          <span key={`${p.id}-${el.symbol}`}>
-            {el.value} {i == 0 ? "$" : el.symbol}
-          </span>
-        ))}
-      </div>
+      {!ordersPage && (
+        <>
+          <div className="prod-card__price">
+            {p.prices.map((el, i) => (
+              <span key={`${p.id}-${el.symbol}`}>
+                {el.value} {i == 1 ? "$" : el.symbol}
+              </span>
+            ))}
+          </div>
 
-      <CustomPopover
-        content={`${p.title}${p.title}`} // imitation of huge group name
-        maxLength={150}
-      >
-        <p className="prod-card__order">{p.title}</p>
-      </CustomPopover>
+          <CustomPopover content={p.order.title} maxLength={150}>
+            <p className="prod-card__order">{p.order.title}</p>
+          </CustomPopover>
 
-      <div className="prod-card__date">
-        <span className="prod-card__date-short align-self-center">
-          {formatDate(p.date).slice(0, 7)}
-        </span>
-        <span className="lh-1">{formatDate(p.date, locale)}</span>
-      </div>
+          <div className="prod-card__date">
+            <span className="prod-card__date-short align-self-center">
+              {formatDate(p.date).slice(0, 7)}
+            </span>
+            <span className="lh-1">{formatDate(p.date, locale)}</span>
+          </div>
+        </>
+      )}
 
       <span
         className="prod-card__delete btn"

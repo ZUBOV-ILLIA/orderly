@@ -26,5 +26,7 @@
   "productType": "Тип продукта",
   "productSpecification": "Спецификация продукта",
   "productPrice": "Цена продукта в UAH",
-  "serialNumber": "Серийный номер"
+  "serialNumber": "Серийный номер",
+  "uploadImage": "Загрузить изображение",
+  "addOrder": "Добавить приход"
 }

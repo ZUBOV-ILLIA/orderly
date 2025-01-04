@@ -26,5 +26,7 @@
   "productType": "Product type",
   "productSpecification": "Product specification",
   "productPrice": "Product price in UAH",
-  "serialNumber": "Serial number"
+  "serialNumber": "Serial number",
+  "uploadImage": "Upload image",
+  "addOrder": "Add order"
 }
