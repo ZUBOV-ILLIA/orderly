@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { getProducts } from "@/api/api";
+import { getProducts, getProductTypes } from "@/api/api";
 import CustomSelect from "@/components/CustomSelect";
 import ProductCard from "@/components/ProductCard";
 import "@/styles/_products.scss";
@@ -11,15 +11,15 @@ export default function ProductsPage() {
   const t = useTranslations();
   const [products, setProducts] = useState<Product[] | null>(null);
   const [productTypes, setProductTypes] = useState<string[]>([]);
+  const [selectedValue, setSelectedValue] = useState("");
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const data: Product[] = await getProducts();
+        const data: Product[] = await getProducts(selectedValue);
 
         if (data) {
           setProducts(data);
-          setProductTypes([...new Set(data.map((product) => product.type))]);
         }
       } catch (e) {
         console.error(e);
@@ -27,6 +27,22 @@ export default function ProductsPage() {
     };
 
     fetchProducts();
+  }, [selectedValue]);
+
+  useEffect(() => {
+    const fetchProductTypes = async () => {
+      try {
+        const data: string[] = await getProductTypes();
+
+        if (data) {
+          setProductTypes(data);
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    };
+
+    fetchProductTypes();
   }, []);
 
   return (
@@ -40,7 +56,11 @@ export default function ProductsPage() {
           <span className="me-2">{t("type")}:</span>
           {productTypes.length > 0 && (
             <div className="flex-grow-1">
-              <CustomSelect options={productTypes} />
+              <CustomSelect
+                options={productTypes}
+                setSelectedValue={setSelectedValue}
+                selectedValue={selectedValue}
+              />
             </div>
           )}
         </div>

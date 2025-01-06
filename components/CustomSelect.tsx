@@ -1,13 +1,21 @@
 "use client";
 
-import { useState } from "react";
+// import { useState } from "react";
 import { useTranslations } from "next-intl";
 import "@/styles/_custom-select.scss";
 
-export default function CustomSelect({ options }: { options: string[] }) {
+export default function CustomSelect({
+  options,
+  selectedValue,
+  setSelectedValue,
+}: {
+  options: string[];
+  selectedValue: string;
+  setSelectedValue: React.Dispatch<React.SetStateAction<string>>;
+}) {
   const t = useTranslations();
 
-  const [selectedValue, setSelectedValue] = useState(t("all"));
+  // const [selectedValue, setSelectedValue] = useState(t("all"));
 
   return (
     <div className="custom-select dropdown flex-grow-1 position-relative">
@@ -17,13 +25,13 @@ export default function CustomSelect({ options }: { options: string[] }) {
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
-        {selectedValue}
+        {selectedValue == "" ? t("all") : selectedValue}
       </div>
 
       <ul className="custom-select__menu dropdown-menu w-100 bg-white">
         <li
           className={`custom-select__item mb-2 ps-2 py-1 ${selectedValue === t("all") ? "bg-secondary text-white" : ""}`}
-          onClick={() => setSelectedValue(t("all"))}
+          onClick={() => setSelectedValue("")}
           role="button"
         >
           {t("all")}

@@ -1,10 +1,22 @@
-import axios from "axios";
+import axios from "@/axiosInterceptors";
 
 const API = process.env.NEXT_PUBLIC_API;
 
-export const getProducts = async () => {
+export const getProducts = async (typeUrl: string = "") => {
   try {
-    const res = await axios.get(`${API}/products`);
+    const res = await axios.get(
+      `${API}/products/${typeUrl ? "by-type/" : ""}${typeUrl}`
+    );
+
+    return res.data;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+export const getProductTypes = async () => {
+  try {
+    const res = await axios.get(`${API}/products/types`);
 
     return res.data;
   } catch (e) {

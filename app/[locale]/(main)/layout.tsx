@@ -1,6 +1,7 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 import { Locale, routing } from "@/i18n/routing";
 import "animate.css";
 
@@ -26,10 +27,16 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const cookieStore = await cookies();
 
   // In case if locale not found, go to main
   if (!routing.locales.includes(locale as Locale)) {
+    console.log("Locale not found");
     redirect("/");
+  }
+
+  if (!cookieStore.get("customJWT")) {
+    redirect(`/${locale}/login`);
   }
 
   const messages = await getMessages();
@@ -40,7 +47,7 @@ export default async function LocaleLayout({
         <StoreProvider>
           <AddBootstrap />
           <body className="min-vh-100 d-flex flex-column align-items-start">
-            <Header />
+            <Header isUserAuth />
             <div className="w-100 d-flex flex-grow-1">
               <NavigationMenu />
               {children}
