@@ -3,15 +3,23 @@
 import Image from "next/image";
 import { Link, usePathname } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
-import { ArrowRightCircleFill, GearFill } from "react-bootstrap-icons";
+import {
+  ArrowRightCircleFill,
+  GearFill,
+  PersonCircle,
+} from "react-bootstrap-icons";
 import "@/styles/_navigation-menu.scss";
-import { useState } from "react";
+import React, { useState } from "react";
 
 export default function NavigationMenu() {
   const pathname = usePathname();
   const t = useTranslations();
 
   const [isOpen, setIsOpen] = useState(true);
+  const [profileInfo] = useState({
+    email: "",
+    img: "",
+  });
 
   const menuItems = [
     { label: t("orders"), href: "/orders" },
@@ -37,19 +45,25 @@ export default function NavigationMenu() {
         className={`nav-menu__wrap ${isOpen ? "" : "nav-menu__wrap--closed"} h-100 d-flex flex-column align-items-center bg-white shadow-lg z-1`}
       >
         <div className="nav-menu__img-wrap my-5 position-relative d-flex align-items-center justify-content-center rounded-circle animate__animated animate__zoomIn">
-          <Image
-            src="/images/avatar.jpg"
-            height={96}
-            width={96}
-            className="rounded-circle"
-            alt="user avatar"
-          />
-          <div
-            className="nav-menu__setting-btn position-absolute bottom-0 end-0 d-flex align-items-center justify-content-center rounded-circle bg-white shadow-sm"
+          {profileInfo.img ? (
+            <Image
+              src={profileInfo.img}
+              className="rounded-circle"
+              alt="user avatar"
+              height={96}
+              width={96}
+              style={{ objectFit: "cover" }}
+            />
+          ) : (
+            <PersonCircle size={96} className="flex-shrink-0 text-secondary" />
+          )}
+          <Link
+            href="/profile"
+            className={`nav-menu__setting-btn position-absolute bottom-0 end-0 d-flex align-items-center justify-content-center rounded-circle shadow-sm ${pathname === "/profile" ? "bg-success" : "bg-white animate__rubberBand"} animate__animated`}
             role="button"
           >
             <GearFill size={14} />
-          </div>
+          </Link>
         </div>
 
         <ul className="nav-menu__list d-flex flex-column align-items-center gap-3 text-uppercase list-unstyled">
