@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Orderly
 
-## Getting Started
+## 🖥️ Demo [Orderly App](https://orderly-gilt.vercel.app/ru/login)
+### Demo backend need near 1 - 2 minutes to start, just reload page a couple of times
 
-First, run the development server:
+
+## Setup Project
+ - Open "Docker Desctop"
+ - Open bash and go to folder where you gonna copy next repositories. After that run:
+
+
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+  git clone https://github.com/ZUBOV-ILLIA/orderly-back.git
+
+  git clone https://github.com/ZUBOV-ILLIA/orderly.git
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ - Copy inside of projects .env files 
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+<hr>
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+After that need to prepare Docker containers.
 
-## Learn More
+ - Open "Docker Desctop"
 
-To learn more about Next.js, take a look at the following resources:
+ - In bash run command:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+  docker run --name orderly-mysql-db -p 3306:3306 -e MYSQL_ROOT_PASSWORD=11111111 -d mysql
+```
 
-## Deploy on Vercel
+After that, you will see that you have new docker container "orderly-mysql-db"
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+![build image](/instructions/1.jpg)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+Open "MySQL Workbench" and click "Setup New Connection"
+
+![build image](/instructions/2.jpg)
+
+Setup all fields like on img. The password is 11111111
+
+![build image](/instructions/3.jpg)
+
+You will have new connection, select it
+
+![build image](/instructions/4.jpg)
+
+After that you need to copy all query from "createDB.sql" that in base directory of "orderly-back" folder and run it
+
+![build image](/instructions/5.jpg)
+
+Great now we already have our database.
+
+<hr>
+
+ - Using bash go to "orderly-back" folder and run one by one this commands to build Docker container for back.
+
+```bash
+  docker build -t orderly-back-image .
+  
+# you have to wait until image will created 
+
+  docker run --name orderly-back -p 3005:3005 orderly-back-image
+```
+
+<hr>
+
+ - Using bash go to "orderly" folder and run one by one this commands to build Docker container for front.
+
+```bash
+  docker build -t orderly-front-image .
+  
+  # you have to wait until image will created 
+  
+  docker run --name orderly-front -p 3000:3000 orderly-front-image
+```
+ 
+
+## 🖥️ Now you can go to: [http://localhost:3000](http://localhost:3000/ru/login)
