@@ -22,11 +22,11 @@ export default function NavigationMenu() {
   const userInfo = useSelector((state: RootState) => state.userSlice);
 
   const menuItems = [
-    { label: t("orders"), href: "/orders" },
-    { label: t("groups"), href: "/groups" },
-    { label: t("products"), href: "/products" },
-    { label: t("customers"), href: "/customers" },
-    { label: t("settings"), href: "/settings" },
+    { label: t("orders"), href: "/orders", disabled: false },
+    { label: t("groups"), href: "/groups", disabled: true },
+    { label: t("products"), href: "/products", disabled: false },
+    { label: t("customers"), href: "/customers", disabled: true },
+    { label: t("settings"), href: "/settings", disabled: true },
   ];
 
   const [isOpen, setIsOpen] = useState(true);
@@ -54,7 +54,7 @@ export default function NavigationMenu() {
   return (
     <div className="nav-menu">
       <div
-        className="nav-menu__burger-btn mt-1 py-3 ps-4 pe-3 position-fixed top-0 rounded-end-5 border border-black bg-white shadow-lg z-2 animate__animated animate__backInLeft"
+        className="nav-menu__burger-btn shadow-lg animate__animated animate__backInLeft"
         role="button"
         onClick={() => setIsOpen(!isOpen)}
       >
@@ -66,7 +66,7 @@ export default function NavigationMenu() {
       <div
         className={`nav-menu__wrap ${isOpen ? "" : "nav-menu__wrap--closed"} h-100 d-flex flex-column align-items-center bg-white shadow-lg z-1`}
       >
-        <div className="nav-menu__img-wrap my-5 position-relative d-flex align-items-center justify-content-center rounded-circle animate__animated animate__zoomIn">
+        <div className="nav-menu__img-wrap animate__animated animate__zoomIn">
           {userInfo.avatar ? (
             <Image
               src={userInfo.avatar}
@@ -81,22 +81,28 @@ export default function NavigationMenu() {
           )}
           <Link
             href="/profile"
-            className={`nav-menu__setting-btn position-absolute bottom-0 end-0 d-flex align-items-center justify-content-center rounded-circle shadow-sm ${pathname === "/profile" ? "bg-success" : "bg-white animate__rubberBand"} animate__animated`}
+            className={`nav-menu__setting-btn shadow-sm ${pathname === "/profile" ? "bg-success" : "bg-white animate__rubberBand"} animate__animated`}
             role="button"
           >
             <GearFill size={14} />
           </Link>
         </div>
 
-        <ul className="nav-menu__list d-flex flex-column align-items-center gap-3 text-uppercase list-unstyled">
+        <ul className="nav-menu__list">
           {menuItems.map((item) => (
-            <li key={item.label} className="nav-menu__item text-center">
-              <Link
-                href={item.href}
-                className={`nav-menu__link d-flex justify-content-center py-2 animate__animated ${pathname === item.href ? "nav-menu__link--active animate__rubberBand" : "animate__zoomIn"}`}
-              >
-                {item.label}
-              </Link>
+            <li key={item.label}>
+              {item.disabled ? (
+                <span className="py-2 text-secondary fw-lighter animate__animated animate__zoomIn">
+                  {item.label}
+                </span>
+              ) : (
+                <Link
+                  href={item.href}
+                  className={`nav-menu__link animate__animated ${pathname === item.href ? "nav-menu__link--active animate__rubberBand" : "animate__zoomIn"}`}
+                >
+                  {item.label}
+                </Link>
+              )}
             </li>
           ))}
         </ul>

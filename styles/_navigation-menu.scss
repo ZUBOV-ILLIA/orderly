@@ -1,6 +1,13 @@
 .nav-menu {
   &__burger-btn {
+    margin-top: 4px;
+    padding: 16px 16px 16px 24px;
+    position: fixed;
+    top: 0;
     left: -15px;
+    background-color: white;
+    border-radius: 0 100px 100px 0;
+    z-index: 2;
     transition: left .3s;
 
     &:hover {
@@ -32,13 +39,27 @@
   }
 
   &__img-wrap {
+    margin: 48px;
     height: 100px;
     width: 100px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
   }
 
   &__setting-btn {
     height: 42px;
     width: 42px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    transition: background-color .3s;
 
     & svg {
       transition: .3s transform;
@@ -49,8 +70,20 @@
     }
   }
 
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-transform: uppercase;
+    list-style: none;
+  }
+
   &__link {
+    padding: 8px 0;
     position: relative;
+    display: flex;
+    justify-content: center;
     color: black;
 
     &:after {
@@ -78,6 +111,9 @@
         left: 0;
         right: 0;
       }
+    }
+
+    &--disabled {
     }
   }
 }

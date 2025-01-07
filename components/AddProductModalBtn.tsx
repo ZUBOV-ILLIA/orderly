@@ -23,6 +23,7 @@ export default function AddProductModalBtn({
   const [productType, setProductType] = useState("");
   const [price, setPrice] = useState("");
   const [serialNum, setSerialNum] = useState("");
+  const [serialNumError, setSerialNumError] = useState<string | null>(null);
   const [isNew, setIsNew] = useState(false);
   const [pending, setPending] = useState(false);
   const [photo, setPhoto] = useState({ url: "", imgName: "", format: "" });
@@ -41,7 +42,7 @@ export default function AddProductModalBtn({
       if (!activeOrder) return;
 
       setPending(true);
-      const product = await addProduct(activeOrder.id, {
+      const res = await addProduct(activeOrder.id, {
         title,
         serialNumber: +serialNum,
         isNew: isNew ? 1 : 0,
@@ -51,9 +52,15 @@ export default function AddProductModalBtn({
         photo: photo.url,
       });
 
-      if (!product) return;
+      if (res.message === "Product already exists") {
+        setSerialNumError(t("serialNumErr1"));
 
-      setProducts([...products, product]);
+        return;
+      }
+
+      if (!res) return;
+
+      setProducts([...products, res]);
       handleCloseModal();
       setTitle("");
       setSpecification("");
@@ -83,7 +90,7 @@ export default function AddProductModalBtn({
 
       <CustomModal isOpen={modalIsOpen} onClose={handleCloseModal}>
         <div>
-          <h3 className="p-4 border-bottom">{t("addOrder")}</h3>
+          <h3 className="p-4 border-bottom">{t("addProduct")}</h3>
 
           <div className="w-100 pt-3 px-3">
             <CldUploadWidget
@@ -124,7 +131,7 @@ export default function AddProductModalBtn({
                 minLength={1}
                 required
               />
-              <div className="d-flex flex-column flex-md-row align-items-center gap-3">
+              <div className="d-flex flex-column flex-md-row align-items-start gap-3">
                 <input
                   type="text"
                   className="form-control rounded-0"
@@ -138,18 +145,24 @@ export default function AddProductModalBtn({
                   required
                 />
 
-                <input
-                  type="text"
-                  className="form-control rounded-0"
-                  placeholder={t("serialNumber")}
-                  value={serialNum}
-                  onChange={(e) => {
-                    if (!/^\d*$/.test(e.target.value)) return;
+                <div className="w-100 position-relative">
+                  <input
+                    type="text"
+                    className={`form-control rounded-0 ${serialNumError ? "is-invalid" : ""}`}
+                    placeholder={t("serialNumber")}
+                    value={serialNum}
+                    onChange={(e) => {
+                      if (!/^\d*$/.test(e.target.value)) return;
 
-                    setSerialNum(e.target.value);
-                  }}
-                  required
-                />
+                      setSerialNum(e.target.value);
+                    }}
+                    required
+                    onClick={() => setSerialNumError(null)}
+                  />
+                  {serialNumError && (
+                    <div className=" invalid-feedback">{serialNumError}</div>
+                  )}
+                </div>
               </div>
               <div className="d-flex align-items-center gap-3">
                 <input

@@ -86,7 +86,7 @@ export default function OrderCard({ o }: { o: Order }) {
 
   return (
     <div
-      className={`order-card ${activeOrder ? "order-card--is-open" : ""} border animate__animated animate__bounceIn`}
+      className={`order-card border ${activeOrder ? "order-card--is-open" : ""} border animate__animated animate__bounceIn`}
       role="button"
       onClick={handleSelectOrder}
     >
@@ -94,7 +94,11 @@ export default function OrderCard({ o }: { o: Order }) {
         <p className="order-card__name">{o.title}</p>
       </div>
 
-      <span className="order-card__menu-btn border" role="button">
+      <span
+        className="order-card__menu-btn border"
+        role="button"
+        onClick={(e) => e.stopPropagation()}
+      >
         <ListUl className="text-secondary" size={24} />
       </span>
 

@@ -92,7 +92,16 @@ export default function OrdersPage() {
         </h3>
       )}
 
-      {orders.length > 0 && (
+      {ordersPending && (
+        <div className="mt-5 d-flex justify-content-center">
+          <div
+            className="mt-5 spinner-border spinner-border fw-normal"
+            role="status"
+          />
+        </div>
+      )}
+
+      {!ordersPending && orders.length > 0 && (
         <div className="orders__list animate__animated animate__bounceIn">
           <div className="d-flex flex-column align-items-start gap-3">
             {orders.map((order) => (

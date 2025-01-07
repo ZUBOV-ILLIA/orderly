@@ -71,7 +71,7 @@ export default function ProductCard({
             alt={p.title}
             height={68}
             width={70}
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: "contain" }}
           />
         ) : (
           <BImage size={40} className="flex-shrink-0 text-secondary" />
@@ -144,7 +144,13 @@ export default function ProductCard({
 
             <div className="prod-card__img-wrap">
               {p.photo ? (
-                <Image src={p.photo} alt={p.title} height={70} width={70} />
+                <Image
+                  src={p.photo}
+                  alt={p.title}
+                  height={68}
+                  width={70}
+                  style={{ objectFit: "contain" }}
+                />
               ) : (
                 <BImage size={40} className="flex-shrink-0 text-secondary" />
               )}

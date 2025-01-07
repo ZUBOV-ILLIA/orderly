@@ -29,8 +29,8 @@ axios.interceptors.response.use(
   function (error) {
     if (error.response?.data === "Unauthorized") {
       // removing key
-      document.cookie =
-        "customJWT=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = `customJWT=; path=/; max-age=0;`;
+      document.cookie = `customUserId=; path=/; max-age=0;`;
 
       window.location.reload();
     }

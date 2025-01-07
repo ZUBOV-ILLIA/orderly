@@ -34,6 +34,8 @@
   "userIsActivated": "User is activated. Now you can Log In",
   "oopsWrong": "Oops, wrong link",
   "showPassword": "Show password",
+  "serialNumErr1": "Serial num must be unique",
+
   "emailValidErr1": "Email is required",
   "emailValidErr2": "Invalid email format",
   "emailValidErr3": "This email is already taken",

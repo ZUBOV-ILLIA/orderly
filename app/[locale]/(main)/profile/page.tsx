@@ -154,6 +154,7 @@ export default function ProfilePage() {
             className="btn btn-outline-danger btn-sm w-100 shadow"
             onClick={() => {
               document.cookie = `customJWT=; path=/; max-age=0;`;
+              document.cookie = `customUserId=; path=/; max-age=0;`;
             }}
           >
             {t("logout")}

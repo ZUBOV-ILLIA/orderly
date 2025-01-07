@@ -13,6 +13,7 @@
     justify-content: center;
     flex-shrink: 0;
     border-radius: 100%;
+    transition: transform .3s;
 
     &::after {
       content: "";
@@ -24,6 +25,10 @@
       background-color: #74A14B;
       border-radius: 100%;
       z-index: -1;
+    }
+
+    &:hover {
+      transform: rotate(180deg) scale(1.3);
     }
   }
 
