@@ -24,6 +24,7 @@
   "toDelete": "To delete a profile, enter",
   "deleteProfile": "Delete profile",
   "password": "Password",
+  "passwordWasChanged": "Password changed successfully!",
   "enterYourPassword": "Enter your password",
   "logIn": "Log In",
   "registration": "Registration",
@@ -46,6 +47,7 @@
 
   "ordersEmpty": "The order list is empty",
   "theOrder": "The order",
+  "theProduct": "The product",
   "hasBeenDeleted": "has been deleted",
   "productsWord": "Products",
   "addProduct": "Add product",

@@ -31,7 +31,6 @@ export default async function LocaleLayout({
 
   // In case if locale not found, go to main
   if (!routing.locales.includes(locale as Locale)) {
-    console.log("Locale not found");
     redirect("/");
   }
 

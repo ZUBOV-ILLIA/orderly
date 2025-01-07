@@ -39,9 +39,9 @@ export default function ProductCard({
 
       toast.success(
         <div className="text-success">
-          <span>The product</span>{" "}
+          <span>{t("theProduct")}</span>{" "}
           <p className="p-2 text-secondary">${p.title}</p>
-          <span>has been deleted!</span>
+          <span>{t("hasBeenDeleted")}!</span>
         </div>,
         {
           position: "top-right",

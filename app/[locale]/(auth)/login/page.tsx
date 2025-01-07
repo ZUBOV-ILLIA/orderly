@@ -40,7 +40,8 @@ export default function LoginPage() {
         }
 
         if (res) {
-          document.cookie = `customJWT=${res}; path=/; max-age=315360000;`;
+          document.cookie = `customJWT=${res.jwt}; path=/; max-age=2592000;`;
+          document.cookie = `customUserId=${res.userId}; path=/; max-age=2592000;`;
         }
 
         router.push(`/products`);

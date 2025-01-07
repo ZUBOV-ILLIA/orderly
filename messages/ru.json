@@ -24,6 +24,7 @@
   "toDelete": "Чтобы удалить профиль, введите",
   "deleteProfile": "Удалить профиль",
   "password": "Пароль",
+  "passwordWasChanged": "Пароль успешно изменен!",
   "enterYourPassword": "Введите пароль",
   "logIn": "Войти",
   "registration": "Регистрация",
@@ -46,6 +47,7 @@
 
   "ordersEmpty": "Список приходов пуст",
   "theOrder": "Приход",
+  "theProduct": "Продукт",
   "hasBeenDeleted": "был удален",
   "productsWord": "Продуктов",
   "addProduct": "Добавить продукт",

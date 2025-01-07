@@ -9,17 +9,17 @@ import {
   PersonCircle,
 } from "react-bootstrap-icons";
 import "@/styles/_navigation-menu.scss";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { getProfileInfo } from "@/api/apiUser";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/strore";
+import { setUserInfo } from "@/redux/slices/userSlice";
 
 export default function NavigationMenu() {
   const pathname = usePathname();
   const t = useTranslations();
-
-  const [isOpen, setIsOpen] = useState(true);
-  const [profileInfo] = useState({
-    email: "",
-    img: "",
-  });
+  const dispatch = useDispatch();
+  const userInfo = useSelector((state: RootState) => state.userSlice);
 
   const menuItems = [
     { label: t("orders"), href: "/orders" },
@@ -28,6 +28,28 @@ export default function NavigationMenu() {
     { label: t("customers"), href: "/customers" },
     { label: t("settings"), href: "/settings" },
   ];
+
+  const [isOpen, setIsOpen] = useState(true);
+
+  useEffect(() => {
+    async function getInfo() {
+      try {
+        // cookies customUserId
+        const userId = document.cookie
+          .split("; ")
+          .find((row) => row.startsWith("customUserId="))
+          ?.split("=")[1];
+
+        const res = await getProfileInfo(userId ? userId : "");
+
+        dispatch(setUserInfo(res));
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    getInfo();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="nav-menu">
@@ -45,9 +67,9 @@ export default function NavigationMenu() {
         className={`nav-menu__wrap ${isOpen ? "" : "nav-menu__wrap--closed"} h-100 d-flex flex-column align-items-center bg-white shadow-lg z-1`}
       >
         <div className="nav-menu__img-wrap my-5 position-relative d-flex align-items-center justify-content-center rounded-circle animate__animated animate__zoomIn">
-          {profileInfo.img ? (
+          {userInfo.avatar ? (
             <Image
-              src={profileInfo.img}
+              src={userInfo.avatar}
               className="rounded-circle"
               alt="user avatar"
               height={96}

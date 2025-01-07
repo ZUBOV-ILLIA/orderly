@@ -3,22 +3,49 @@
 import React, { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { Link } from "@/i18n/routing";
+import { Link, useRouter } from "@/i18n/routing";
 import { PersonCircle } from "react-bootstrap-icons";
 import { CldUploadWidget } from "next-cloudinary";
 import { validatePassword } from "@/utils/helpers";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/strore";
+import { setUserInfo } from "@/redux/slices/userSlice";
+import {
+  deleteUser,
+  updateUserAvatar,
+  updateUserPassword,
+} from "@/api/apiUser";
+import { toast } from "react-toastify";
 
 export default function ProfilePage() {
   const t = useTranslations();
+  const router = useRouter();
   const [isDeleteButtonDisabled, setIsDeleteButtonDisabled] = useState(true);
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState<string | null>(null);
-  const [profileInfo, setProfileInfo] = useState({
-    email: "",
-    img: "",
-  });
+  const [updatedAvatar, setUpdatedAvatar] = useState<string | null>(null);
 
-  useEffect(() => {}, []);
+  const dispatch = useDispatch();
+  const userInfo = useSelector((state: RootState) => state.userSlice);
+
+  useEffect(() => {
+    async function changeAvatar() {
+      try {
+        if (!updatedAvatar) return;
+
+        await updateUserAvatar({
+          id: userInfo.id,
+          avatar: updatedAvatar,
+        });
+
+        dispatch(setUserInfo({ ...userInfo, avatar: updatedAvatar }));
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    changeAvatar();
+  }, [updatedAvatar]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function onChangeDeleteInput(e: React.ChangeEvent<HTMLInputElement>) {
     if (e.target.value === t("deleteProfile").toUpperCase()) {
@@ -28,7 +55,7 @@ export default function ProfilePage() {
     }
   }
 
-  function changePassword() {
+  async function changePassword() {
     const passwordValidationError = validatePassword(password);
 
     if (passwordValidationError) {
@@ -37,9 +64,40 @@ export default function ProfilePage() {
       return;
     }
 
-    console.log("password", password);
-
     try {
+      await updateUserPassword({
+        id: userInfo.id,
+        password: password,
+      });
+
+      setPassword("");
+      toast.success(
+        <div className="text-success">{t("passwordWasChanged")}</div>,
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        }
+      );
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async function deleteAccount() {
+    try {
+      await deleteUser(userInfo.id);
+
+      document.cookie = `customJWT=; path=/; max-age=0;`;
+      document.cookie = `customUserId=; path=/; max-age=0;`;
+      dispatch(setUserInfo({ id: "", avatar: null, email: "" }));
+
+      router.push("/registration");
     } catch (e) {
       console.error(e);
     }
@@ -53,11 +111,11 @@ export default function ProfilePage() {
         </h2>
       </div>
 
-      <div className="mb-4 d-flex">
-        <div className="me-3 p-2 rounded-circle shadow-lg">
-          {profileInfo.img ? (
+      <div className="mb-4 p-3 d-flex border rounded-3 shadow">
+        <div className="me-3 p-2 rounded-circle shadow">
+          {userInfo.avatar ? (
             <Image
-              src={profileInfo.img}
+              src={userInfo.avatar}
               className="rounded-circle"
               alt="user avatar"
               height={100}
@@ -70,16 +128,13 @@ export default function ProfilePage() {
         </div>
 
         <div className="w-100 d-flex flex-column justify-content-evenly">
-          <p className="text-secondary">{profileInfo.email} email</p>
+          <p className="text-secondary">{userInfo.email}</p>
           <CldUploadWidget
             uploadPreset="orderly"
             onSuccess={(
               results: any // eslint-disable-line
             ) => {
-              setProfileInfo({
-                ...profileInfo,
-                img: results.info?.url || "",
-              });
+              setUpdatedAvatar(results.info?.url || null);
             }}
           >
             {({ open }) => {
@@ -145,9 +200,7 @@ export default function ProfilePage() {
         <button
           className="btn btn-danger btn-sm w-100 shadow"
           disabled={isDeleteButtonDisabled}
-          onClick={() => {
-            document.cookie = `customJWT=; path=/; max-age=0;`;
-          }}
+          onClick={deleteAccount}
         >
           {t("deleteProfile")}
         </button>
