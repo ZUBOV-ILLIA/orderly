@@ -1,15 +1,35 @@
+"use client";
+
 import { activation } from "@/api/authApi";
 import { Link } from "@/i18n/routing";
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
 
-export default async function ActivationPage({
+export default function ActivationPage({
   params,
 }: {
   params: Promise<{ activationSlug: string }>;
 }) {
-  const t = await getTranslations();
-  const { activationSlug } = await params;
-  const activated = await activation(activationSlug);
+  const t = useTranslations();
+  const [activated, setActivated] = useState(false);
+
+  useEffect(() => {
+    async function activateUser() {
+      try {
+        const { activationSlug } = await params;
+
+        const res = await activation(activationSlug);
+
+        if (res) {
+          setActivated(true);
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    activateUser();
+  }, []);
 
   return (
     <div className="w-100 d-flex flex-column align-items-center justify-content-center gap-4">
