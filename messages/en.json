@@ -62,5 +62,6 @@
   "productPrice": "Product price in UAH",
   "serialNumber": "Serial number",
   "uploadImage": "Upload image",
+  "waitUntilServerStart": "Wait for the server to start, it usually takes about 1 minute.",
   "addOrder": "Add order"
 }

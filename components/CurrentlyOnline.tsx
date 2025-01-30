@@ -1,16 +1,24 @@
 "use client";
 
+import { setServerInfo } from "@/redux/slices/serverStatusSlice";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
 export default function CurrentlyOnline() {
   const [clientsLength, setClientsLength] = useState(0);
   const [animation, setAnimation] = useState(false);
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     const socket = new WebSocket(String(process.env.NEXT_PUBLIC_WEBSOCKET_URL));
 
     socket.addEventListener("message", (event) => {
-      setClientsLength(JSON.parse(event.data).clientsLength);
+      const clientsLength = JSON.parse(event.data).clientsLength;
+
+      dispatch(setServerInfo({ isServerOnline: clientsLength > 0 }));
+      setClientsLength(clientsLength);
       setAnimation(true);
 
       setTimeout(() => {
@@ -22,6 +30,16 @@ export default function CurrentlyOnline() {
       socket.close();
     };
   }, []);
+
+  useEffect(() => {
+    if (clientsLength === 0) {
+      const interval = setInterval(() => {
+        window.location.reload();
+      }, 10000);
+
+      return () => clearInterval(interval);
+    }
+  }, [clientsLength, router]);
 
   return (
     <div className="d-flex flex-column align-items-center gap-1 lh-1">

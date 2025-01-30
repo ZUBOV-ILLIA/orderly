@@ -5,6 +5,8 @@ import { registration } from "@/api/authApi";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { validateEmail, validatePassword } from "@/utils/helpers";
+import { RootState } from "@/redux/strore";
+import { useSelector } from "react-redux";
 
 export default function RegistrationPage() {
   const t = useTranslations();
@@ -15,6 +17,9 @@ export default function RegistrationPage() {
   const [emailError, setEmailError] = useState<string | null>(null);
   const [passwordError, setPasswordError] = useState<string | null>(null);
   const [step, setStep] = useState(1);
+  const serverStatus = useSelector(
+    (state: RootState) => state.serverStatusSlice.isServerOnline
+  );
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -50,7 +55,11 @@ export default function RegistrationPage() {
 
   return (
     <div className="w-100 d-flex align-items-center justify-content-center">
-      {step === 1 && (
+      {!serverStatus && (
+        <h2 style={{ width: "600px" }}>{t("waitUntilServerStart")}</h2>
+      )}
+
+      {serverStatus && step === 1 && (
         <div className="card p-4 shadow-sm" style={{ width: "400px" }}>
           <h1 className="text-center mb-4">{t("registration")}</h1>
 
@@ -121,7 +130,7 @@ export default function RegistrationPage() {
         </div>
       )}
 
-      {step === 2 && (
+      {serverStatus && step === 2 && (
         <p className="alert alert-success">{t("checkYourAccount")}</p>
       )}
     </div>
